@@ -23,19 +23,6 @@
 
 //------------------------------------Métodos-----------------------------------
 
-      //---------------------------------Menú-------------------------------
-
-		void Menu()
-		{
-			cout<<"\n\t\tPractica 1\n\n";
-			cout<<" 1. Crear Archivo                     "<<endl;
-			cout<<" 2. Abrir Archivo                     "<<endl;
-			cout<<" 3. Archivos Recientes                "<<endl;
-			cout<<" 4. Salir                             "<<endl;
-
-			cout<<"\n Ingrese El Numero De La Opcion A Elegir: ";
-		}
-
 	 //-------------------------------Marcos-------------------------------
 
 		  void MarcoMenu ()
@@ -70,7 +57,7 @@
 				}
 			 }
 
-			 /*//Linea Vertical Derecha
+			 //Linea Vertical Derecha
 			 for(int z = 0; z < Alto - 3; z++)
 			 {
 				for(i = 2; i < Ancho - 1; i++)
@@ -85,7 +72,7 @@
 					  printf("%c", 186);
 				   }
 				}
-			 } */
+			 }
 
 			 //Linea Vertical Izquierda
 			 for (i = 3; i < Alto; i++)
@@ -189,12 +176,7 @@
 			 gotoxy(25, Alto - 2); cout<< "^w (Buscar Y Remplazar)";
 			 gotoxy(80, Alto - 2); cout<< "^c (Reportes)";
 			 gotoxy(120, Alto - 2); cout<< "^s (Guardar)";
-
-			 //Generar Área De Trabajo
-
-
-			 getchar();
-		  }
+          }
 
 	 //-----------------------------Fullscreen-----------------------------
 
@@ -227,107 +209,18 @@
 			Alto = (GetSystemMetrics(SM_CYSCREEN) / 19) + 1;
 		}
 
-	 //------------------------Posición Cursor-----------------------------
+	 //---------------------------------Menú-------------------------------
 
-
-
-		void gotoxy(int x, int y)
+		void Menu()
 		{
-		   COORD coord;
-		   coord.X = x;
-		   coord.Y = y;
-		   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+			cout<<"\n\t\tPractica 1\n\n";
+			cout<<" 1. Crear Archivo                     "<<endl;
+			cout<<" 2. Abrir Archivo                     "<<endl;
+			cout<<" 3. Archivos Recientes                "<<endl;
+			cout<<" 4. Salir                             "<<endl;
+
+			cout<<"\n Ingrese El Numero De La Opcion A Elegir: ";
 		}
-
-		void MarcoMenu(int Col1, int Col2, int Fil1, int Fil2)
-		{
-		   for (int Cols = Col1; Cols <= Col2; Cols++)
-		   {
-			  for (int Fils = Fil1; Fils <= Fil2; Fils++)
-			  {
-				 gotoxy(Cols,Fils);
-				 //Linea Vertical Derecha E Izquierda
-				 if ((Cols == Col1 || Cols == Col2) && (Fils != Fil1 && Fils != Fil2))
-				 {
-					cout << (char)186;
-				 }
-				 //Linea Horizontal Superior E Inferior
-				 else if ((Fils == Fil1 || Fils == Fil2) && (Cols != Col1 && Cols != Col2))
-				 {
-					cout << (char)205;
-				 }
-			  }
-		   }
-
-		   //Esquina Superior Izquierda
-		   gotoxy(Col1,Fil1);
-		   cout << (char)201;
-		   //Esquina Inferior Izquierda
-		   gotoxy(Col1,Fil2);
-		   cout << (char)200;
-		   //Esquina Superior Derecha
-		   gotoxy(Col2,Fil1);
-		   cout << (char)187;
-		   //Esquina Inferior Derecha
-		   gotoxy(Col2,Fil2);
-		   cout << (char)188;
-		   getchar();
-		}
-
-		void MarcoPrincipal(int Col1, int Col2, int Fil1, int Fil2)
-		{
-		   for (int Cols = Col1; Cols <= Col2; Cols++)
-		   {
-			  for (int Fils = Fil1; Fils <= Fil2; Fils++)
-			  {
-				 gotoxy(Cols,Fils);
-				 //Linea Vertical Derecha E Izquierda
-				 if ((Cols == Col1 || Cols == Col2) && (Fils != Fil1 && Fils != Fil2))
-				 {
-					cout << (char)186;
-				 }
-				 //Linea Horizontal Superior E Inferior
-				 else if ((Fils == Fil1 || Fils == Fil2) && (Cols != Col1 && Cols != Col2))
-				 {
-					cout << (char)205;
-				 }
-				 else if ((Cols != Col1) && (Fils == Fil2 - 4))
-				 {
-					cout << (char)205;
-				 }
-
-			  }
-		   }
-
-		   //Esquina Superior Izquierda
-		   gotoxy(Col1,Fil1);
-		   cout << (char)201;
-		   //Esquina Inferior Izquierda
-		   gotoxy(Col1,Fil2);
-		   cout << (char)200;
-		   //Esquina Superior Derecha
-		   gotoxy(Col2,Fil1);
-		   cout << (char)187;
-		   //Esquina Inferior Derecha
-		   gotoxy(Col2,Fil2);
-		   cout << (char)188;
-		   //T Derecha
-		   gotoxy(Col2,Fil2 - 4);
-		   cout << (char)185;
-		   //T Izquierda
-		   gotoxy(Col1,Fil2 - 4);
-		   cout << (char)204;
-
-		   //Textos
-		   gotoxy(Col1 + 40,Fil2 - 2);
-		   cout << "^w (Buscar Y Remplazar)";
-		   gotoxy(Col1 + 80,Fil2 - 2);
-		   cout << "^c (Reportes)";
-		   gotoxy(Col1 + 110,Fil2 - 2);
-		   cout << "^s (Guardar)";
-		}
-
-
 
 //-------------------------------------Main-------------------------------------
 	 int _tmain(int argc, _TCHAR* argv[])
@@ -336,14 +229,12 @@
 		Resolucion();
 		system("color 0b");
 		clrscr();
-		int Op = 0;
-		MarcoMenu(0,Ancho - 2,0,Alto + 6);
-
-		//Menu(); cin>> Op;
+		MarcoMenu();
+		int Op;
 
 		do
 		{
-
+		   Menu(); cin>> Op;
 		   switch(Op)
 		   {
 			  case 1:

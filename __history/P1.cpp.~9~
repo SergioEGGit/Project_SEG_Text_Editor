@@ -231,7 +231,7 @@
 
 
 
-		void gotoxy(int x, int y)
+		void gotoxy(int x, int y) //implementación de la función gotoxy
 		{
 		   COORD coord;
 		   coord.X = x;
@@ -239,93 +239,31 @@
 		   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 		}
 
-		void MarcoMenu(int Col1, int Col2, int Fil1, int Fil2)
+		void recuadro(int Col1, int Col2, int Fil1, int Fil2) //implementación de la función recuadro
 		{
-		   for (int Cols = Col1; Cols <= Col2; Cols++)
+		   for (int Cols=Col1;Cols<=Col2;Cols++) //for doble para hacer el recorrido del recuadro
 		   {
-			  for (int Fils = Fil1; Fils <= Fil2; Fils++)
+			  for (int Fils=Fil1;Fils<=Fil2;Fils++)
 			  {
-				 gotoxy(Cols,Fils);
-				 //Linea Vertical Derecha E Izquierda
-				 if ((Cols == Col1 || Cols == Col2) && (Fils != Fil1 && Fils != Fil2))
-				 {
-					cout << (char)186;
-				 }
-				 //Linea Horizontal Superior E Inferior
-				 else if ((Fils == Fil1 || Fils == Fil2) && (Cols != Col1 && Cols != Col2))
-				 {
-					cout << (char)205;
-				 }
+			  gotoxy(Cols,Fils); //llamado de la función gotoxy con el par de coordendas "x,y"
+			  if ((Cols == Col1 || Cols == Col2) && (Fils != Fil1 && Fils != Fil2))
+			//omite las esquinas
+			  cout << (char)186; //imprime las formas verticales del recuadro
+			  else if ((Fils==Fil1 || Fils == Fil2) && (Cols != Col1 && Cols != Col2))
+			//omite las esquinas
+			  cout << (char)205; //imprime las formas horizontales del recuadro
 			  }
 		   }
-
-		   //Esquina Superior Izquierda
-		   gotoxy(Col1,Fil1);
-		   cout << (char)201;
-		   //Esquina Inferior Izquierda
-		   gotoxy(Col1,Fil2);
-		   cout << (char)200;
-		   //Esquina Superior Derecha
-		   gotoxy(Col2,Fil1);
-		   cout << (char)187;
-		   //Esquina Inferior Derecha
-		   gotoxy(Col2,Fil2);
-		   cout << (char)188;
-		   getchar();
-		}
-
-		void MarcoPrincipal(int Col1, int Col2, int Fil1, int Fil2)
-		{
-		   for (int Cols = Col1; Cols <= Col2; Cols++)
-		   {
-			  for (int Fils = Fil1; Fils <= Fil2; Fils++)
-			  {
-				 gotoxy(Cols,Fils);
-				 //Linea Vertical Derecha E Izquierda
-				 if ((Cols == Col1 || Cols == Col2) && (Fils != Fil1 && Fils != Fil2))
-				 {
-					cout << (char)186;
-				 }
-				 //Linea Horizontal Superior E Inferior
-				 else if ((Fils == Fil1 || Fils == Fil2) && (Cols != Col1 && Cols != Col2))
-				 {
-					cout << (char)205;
-				 }
-				 else if ((Cols != Col1) && (Fils == Fil2 - 4))
-				 {
-					cout << (char)205;
-				 }
-
-			  }
-		   }
-
-		   //Esquina Superior Izquierda
-		   gotoxy(Col1,Fil1);
-		   cout << (char)201;
-		   //Esquina Inferior Izquierda
-		   gotoxy(Col1,Fil2);
-		   cout << (char)200;
-		   //Esquina Superior Derecha
-		   gotoxy(Col2,Fil1);
-		   cout << (char)187;
-		   //Esquina Inferior Derecha
-		   gotoxy(Col2,Fil2);
-		   cout << (char)188;
-		   //T Derecha
-		   gotoxy(Col2,Fil2 - 4);
-		   cout << (char)185;
-		   //T Izquierda
-		   gotoxy(Col1,Fil2 - 4);
-		   cout << (char)204;
-
-		   //Textos
-		   gotoxy(Col1 + 40,Fil2 - 2);
-		   cout << "^w (Buscar Y Remplazar)";
-		   gotoxy(Col1 + 80,Fil2 - 2);
-		   cout << "^c (Reportes)";
-		   gotoxy(Col1 + 110,Fil2 - 2);
-		   cout << "^s (Guardar)";
-		}
+	gotoxy(Col1,Fil1); //imprime las esquinas
+	cout << (char)201;
+	gotoxy(Col1,Fil2);
+	cout << (char)200;
+	gotoxy(Col2,Fil1);
+	cout << (char)187;
+	gotoxy(Col2,Fil2);
+	cout << (char)188;
+	getchar();
+	}
 
 
 
@@ -337,7 +275,7 @@
 		system("color 0b");
 		clrscr();
 		int Op = 0;
-		MarcoMenu(0,Ancho - 2,0,Alto + 6);
+		recuadro(0,Ancho - 5,0,Alto + 6);
 
 		//Menu(); cin>> Op;
 
