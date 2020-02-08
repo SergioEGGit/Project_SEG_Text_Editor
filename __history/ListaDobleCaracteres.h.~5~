@@ -1,0 +1,21 @@
+//---------------------------------------------------------------------------
+
+#ifndef ListaDobleCaracteresH
+#define ListaDobleCaracteresH
+
+
+	struct Caracteres
+	{
+	   int Id;
+	   struct Caracteres *sgte;
+	   struct Caracteres *ant;
+	};
+
+	typedef struct Caracteres *ListaDobleCaracteres;
+
+	void mensaje();
+
+
+//---------------------------------------------------------------------------
+#endif
+

@@ -14,7 +14,6 @@
    #include <conio.h>
    #include <string>
    #include <windows.h>
-   #include <ListaDobleCaracteres.h>
    using namespace std;
 
 //----------------------------------Variables-----------------------------------
@@ -206,7 +205,7 @@
 
 	 //------------------------------Editor--------------------------------
 
-		void Coordenada(int x, int y)
+        void Coordenada(int x, int y)
 		{
 		   gotoxy(150, 45);
 		   cout<< "           ";
@@ -239,7 +238,7 @@
 			  }
 			  C = getche();
 			  //cout<< C;
-			  if(Fil <= 36)
+              if(Fil <= 36)
 			  {
 				 str[Col] = C;
 			  }
@@ -248,61 +247,14 @@
 				 str[Col + 1] = C;
 			  }
 
-			  Col++;
 
+			  Col++;
 			  switch(C)
 			  {
 				 case 8:
-
-					if(Fil <= 36)
-					{
-					   if(Col > 2)
-					{
-					Col = Col - 2;
-
-
-					   Coordenada(Fil, Col);
-					   gotoxy(Col + 4, Fil + 3);
-					   cout<< " ";
-					}
-					else
-					{
-
-
-						  Col = 1;
-						  Coordenada(Fil, Col);
-						  gotoxy(Col + 4, Fil + 3);
-
-					}
-					}
-
-
-					if(Fil == 37)
-					{
-					   if(Col > 1)
-					{
-					Col = Col - 2;
-
-
-					   Coordenada(Fil, Col + 1);
-					   gotoxy(Col + 5, Fil + 3);
-					   cout<< " ";
-					}
-					else
-					{
-
-
-						  Col = 0;
-						  Coordenada(Fil, Col + 1);
-						  gotoxy(Col + 5, Fil + 3);
-
-					}
-					}
-
-
-
-
-
+					Col = Col - 1;
+					gotoxy(Col + 4, Fil + 3);
+					//cout<< " ";
 				 break;
 
 				 case 13:
@@ -318,7 +270,6 @@
 					}
 				 break;
 			  }
-
 
 			  if(Col >= 159)
 			  {
@@ -349,8 +300,6 @@
 			  {
 				 Coordenada(Fil, Col + 1);
 			  }
-
-			  //Col++;
 		   }
 
 		   while(C != 27);
@@ -359,8 +308,6 @@
 
 		   return true;
 		}
-
-
 
 
 

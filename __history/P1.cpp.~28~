@@ -253,56 +253,10 @@
 			  switch(C)
 			  {
 				 case 8:
-
-					if(Fil <= 36)
-					{
-					   if(Col > 2)
-					{
-					Col = Col - 2;
-
-
-					   Coordenada(Fil, Col);
-					   gotoxy(Col + 4, Fil + 3);
-					   cout<< " ";
-					}
-					else
-					{
-
-
-						  Col = 1;
-						  Coordenada(Fil, Col);
-						  gotoxy(Col + 4, Fil + 3);
-
-					}
-					}
-
-
-					if(Fil == 37)
-					{
-					   if(Col > 1)
-					{
-					Col = Col - 2;
-
-
-					   Coordenada(Fil, Col + 1);
-					   gotoxy(Col + 5, Fil + 3);
-					   cout<< " ";
-					}
-					else
-					{
-
-
-						  Col = 0;
-						  Coordenada(Fil, Col + 1);
-						  gotoxy(Col + 5, Fil + 3);
-
-					}
-					}
-
-
-
-
-
+					Col = Col - 1;
+					Coordenada(Fil, Col);
+					gotoxy(Col, Fil);
+					//cout<< " ";
 				 break;
 
 				 case 13:
@@ -349,8 +303,6 @@
 			  {
 				 Coordenada(Fil, Col + 1);
 			  }
-
-			  //Col++;
 		   }
 
 		   while(C != 27);

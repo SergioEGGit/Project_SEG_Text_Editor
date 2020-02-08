@@ -20,18 +20,44 @@
 
    int Alto = 0;
    int Ancho = 0;
+   int Opcion;
 
-//------------------------------------MÃ©todos-----------------------------------
+//------------------------------------Métodos-----------------------------------
 
-	 //---------------------------------MenÃº-------------------------------
+	 //---------------------------------Menú-------------------------------
 
 		void menu()
 		{
-		   gotoxy ((Ancho - 2)/2 - , 2);
-		   cout<< "Universidad De San Carlos De Guatemala";
+		   //Información
+		   gotoxy ((Ancho - 2)/2 - 20, 2);
+		   cout<< "Universidad De San Carlos De Guatemala" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 12, 4);
+		   cout<< "Facultad De Ingenieria" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 11, 6);
+		   cout<< "Estructuras De Datos" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 6, 8);
+		   cout<< "Practica 1" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 17, 10);
+		   cout<< "Sergio Alexander Echigoyen Gomez" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 6, 12);
+		   cout<< "201801628" <<endl;
+
+		   //Menú
+		   gotoxy ((Ancho - 2)/2 - 4, 20);
+		   cout<< "Menu" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 11, 22);
+		   cout<< "1. Crear Archivo" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 11, 24);
+		   cout<< "2. Abrir Archivo" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 11, 26);
+		   cout<< "3. Archivos Recientes" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 11, 28);
+		   cout<< "4. Salir" <<endl;
+		   gotoxy ((Ancho - 2)/2 - 11, 30);
+		   cout<< "Elija Una Opcion: " <<endl;
+		   gotoxy ((Ancho - 2)/2 + 8, 30);
+		   cin>> Opcion;
 		}
-
-
 
 	 //-------------------------------Marcos-------------------------------
 
@@ -76,18 +102,7 @@
 		   gotoxy(Col2,Fil2);
 		   cout << (char)188;
 
-		   //MenÃº
-		   /*gotoxy(Col2/2 - 2,Fil1 + 2);
-		   cout << "Universidad De San Carlos De Guatemala";
-		   gotoxy(Col2/2 - 4,Fil1 + 2);
-		   cout << "Practica 1";
-		   gotoxy(Col2/2 - 7,Fil1 + 4);
-		   cout << "1.Crear Archivo"; */
-
 		   menu();
-
-
-		   getchar();
 		}
 
 		void MarcoPrincipal(int Col1, int Col2, int Fil1, int Fil2)
@@ -107,11 +122,16 @@
 				 {
 					cout << (char)205;
 				 }
+				 //Status Bar
 				 else if ((Cols != Col1) && (Fils == Fil2 - 4))
 				 {
 					cout << (char)205;
 				 }
-
+				 //Barra De Título
+				 else if ((Cols != Col1) && (Fils == Fil1 + 2))
+				 {
+					cout << (char)205;
+				 }
 			  }
 		   }
 
@@ -127,12 +147,19 @@
 		   //Esquina Inferior Derecha
 		   gotoxy(Col2,Fil2);
 		   cout << (char)188;
-		   //T Derecha
+		   //T Derecha Status Bar
 		   gotoxy(Col2,Fil2 - 4);
 		   cout << (char)185;
-		   //T Izquierda
+		   //T Izquierda Status Bar
 		   gotoxy(Col1,Fil2 - 4);
 		   cout << (char)204;
+		   //T Derecha Barra De Título
+		   gotoxy(Col2,Fil1 + 2);
+		   cout << (char)185;
+		   //T Derecha Barra De Título
+		   gotoxy(Col1,Fil1 + 2);
+		   cout << (char)204;
+
 
 		   //Textos
 		   gotoxy(Col1 + 40,Fil2 - 2);
@@ -141,8 +168,8 @@
 		   cout << "^c (Reportes)";
 		   gotoxy(Col1 + 110,Fil2 - 2);
 		   cout << "^s (Guardar)";
-
-		   getchar();
+		   gotoxy(Col1 + 75,Fil1 + 1);
+		   cout << "Editor De Texto SEG";
 		}
 
 	 //-----------------------------Fullscreen-----------------------------
@@ -168,7 +195,7 @@
 		   return;
 		}
 
-	 //---------------------Obtener ResoluciÃ³n Pantalla--------------------
+	 //---------------------Obtener Resolución Pantalla--------------------
 
 		void Resolucion()
 		{
@@ -176,48 +203,158 @@
 			Alto = (GetSystemMetrics(SM_CYSCREEN) / 19) + 1;
 		}
 
-	 //------------------------PosiciÃ³n Cursor-----------------------------
+	 //------------------------------Editor--------------------------------
+
+        void Coordenada(int x, int y)
+		{
+		   gotoxy(150, 45);
+		   cout<< "           ";
+		   gotoxy(150, 45);
+		   cout<< "C: " << y << " F: " << x;
+		}
+
+		bool Editor()
+		{
+		   int C = 0;
+		   int Col = 1;
+		   int Fil = 1;
+		   char str[1000];
+
+		   Coordenada(Fil, Col);
+
+		   //Fijar Cursor
+		   gotoxy(3,4);
+
+		   do
+		   {
+
+			  if(Fil <= 36)
+			  {
+				 gotoxy(Col + 4, Fil + 3);
+			  }
+			  if(Fil == 37)
+			  {
+				 gotoxy(Col + 5, Fil + 3);
+			  }
+			  C = getche();
+			  //cout<< C;
+              if(Fil <= 36)
+			  {
+				 str[Col] = C;
+			  }
+			  if(Fil == 37)
+			  {
+				 str[Col + 1] = C;
+			  }
+
+
+			  Col++;
+			  switch(C)
+			  {
+				 case 8:
+					Col = Col - 1;
+					gotoxy(Col + 4, Fil + 3);
+					cout<< " ";
+				 break;
+
+				 case 13:
+					if(Fil <= 36)
+					{
+					   Fil = Fil + 1;
+					   Col = 1;
+					}
+					if(Fil == 37)
+					{
+					   Fil = Fil + 1;
+					   Col = Col - 1;
+					}
+				 break;
+			  }
+
+			  if(Col >= 159)
+			  {
+				 if(Fil <= 36)
+				 {
+					Fil = Fil + 1;
+					Col = 1;
+				 }
+				if(Fil == 37)
+				 {
+					Fil = 37;
+					Col = Col - 1;
+				 }
+			  }
+
+			  if(Fil >= 38)
+			  {
+				 Fil = 37;
+			  }
+
+
+			  if(Fil <= 36)
+			  {
+				 Coordenada(Fil, Col);
+			  }
+
+			  if(Fil == 37)
+			  {
+				 Coordenada(Fil, Col + 1);
+			  }
+		   }
+
+		   while(C != 27);
+
+
+
+		   return true;
+		}
+
 
 
 
 //-------------------------------------Main-------------------------------------
+
 	 int _tmain(int argc, _TCHAR* argv[])
 	 {
 		Fullscreen();
 		Resolucion();
 		system("color 0b");
-		clrscr();
-		int Op = 0;
+		system("cls");
 		MarcoMenu(0,Ancho - 2,0,Alto + 6);
-		//MarcoPrincipal(0,Ancho - 2,0,Alto + 6);
-
-		menu();
 
 		do
 		{
-
-		   switch(Op)
+		   switch(Opcion)
 		   {
 			  case 1:
-				 clrscr();
-				 system("pause");
+				 system("cls");
+				 MarcoPrincipal(0,Ancho - 2,0,Alto + 6);
+				 Editor();
+				 system("pause > null");
+				 Opcion = 0;
 			  break;
 
 			  case 2:
-				 cout<< "Opcion 1" << endl;
-				 system("Pause > NULL");
+				 cout<< "Opcion 2" << endl;
+				 system("Pause > null");
+				 Opcion = 0;
 			  break;
 
 			  case 3:
-				 cout<< "Opcion 1" << endl;
-				 system("Pause > NULL");
+				 cout<< "Opcion 3" << endl;
+				 system("Pause > null");
+				 Opcion = 0;
+			  break;
+
+			  default:
+				 MarcoMenu(0,Ancho - 2,0,Alto + 6);
 			  break;
 		   }
-           cout<<endl<<endl;
+		   cout<<endl<<endl;
 		   system("cls");
 		}
 
-		while(Op != 4);
+		while(Opcion != 4);
 		cout<< "\n";
 		cout<< "\n";
 		cout<< "Aplicacion Finalizada";
@@ -227,6 +364,8 @@
 
 		return 0;
 	 }
+
+
 
 
 

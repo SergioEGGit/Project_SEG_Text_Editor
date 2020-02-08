@@ -14,7 +14,6 @@
    #include <conio.h>
    #include <string>
    #include <windows.h>
-   #include <ListaDobleCaracteres.h>
    using namespace std;
 
 //----------------------------------Variables-----------------------------------
@@ -209,159 +208,37 @@
 		void Coordenada(int x, int y)
 		{
 		   gotoxy(150, 45);
-		   cout<< "           ";
-		   gotoxy(150, 45);
-		   cout<< "C: " << y << " F: " << x;
+		   cout<< "F: " << x << " C: " << y;
 		}
 
 		bool Editor()
 		{
 		   int C = 0;
-		   int Col = 1;
-		   int Fil = 1;
-		   char str[1000];
+		   int Col = 0;
+		   int Fil = 0;
+		   char str[100];
 
 		   Coordenada(Fil, Col);
 
 		   //Fijar Cursor
 		   gotoxy(3,4);
 
+		   cout << "Enter characters, Press Enter to stop\n";
+
 		   do
 		   {
-
-			  if(Fil <= 36)
-			  {
-				 gotoxy(Col + 4, Fil + 3);
-			  }
-			  if(Fil == 37)
-			  {
-				 gotoxy(Col + 5, Fil + 3);
-			  }
-			  C = getche();
-			  //cout<< C;
-			  if(Fil <= 36)
-			  {
-				 str[Col] = C;
-			  }
-			  if(Fil == 37)
-			  {
-				 str[Col + 1] = C;
-			  }
-
-			  Col++;
-
-			  switch(C)
-			  {
-				 case 8:
-
-					if(Fil <= 36)
-					{
-					   if(Col > 2)
-					{
-					Col = Col - 2;
-
-
-					   Coordenada(Fil, Col);
-					   gotoxy(Col + 4, Fil + 3);
-					   cout<< " ";
-					}
-					else
-					{
-
-
-						  Col = 1;
-						  Coordenada(Fil, Col);
-						  gotoxy(Col + 4, Fil + 3);
-
-					}
-					}
-
-
-					if(Fil == 37)
-					{
-					   if(Col > 1)
-					{
-					Col = Col - 2;
-
-
-					   Coordenada(Fil, Col + 1);
-					   gotoxy(Col + 5, Fil + 3);
-					   cout<< " ";
-					}
-					else
-					{
-
-
-						  Col = 0;
-						  Coordenada(Fil, Col + 1);
-						  gotoxy(Col + 5, Fil + 3);
-
-					}
-					}
-
-
-
-
-
-				 break;
-
-				 case 13:
-					if(Fil <= 36)
-					{
-					   Fil = Fil + 1;
-					   Col = 1;
-					}
-					if(Fil == 37)
-					{
-					   Fil = Fil + 1;
-					   Col = Col - 1;
-					}
-				 break;
-			  }
-
-
-			  if(Col >= 159)
-			  {
-				 if(Fil <= 36)
-				 {
-					Fil = Fil + 1;
-					Col = 1;
-				 }
-				if(Fil == 37)
-				 {
-					Fil = 37;
-					Col = Col - 1;
-				 }
-			  }
-
-			  if(Fil >= 38)
-			  {
-				 Fil = 37;
-			  }
-
-
-			  if(Fil <= 36)
-			  {
-				 Coordenada(Fil, Col);
-			  }
-
-			  if(Fil == 37)
-			  {
-				 Coordenada(Fil, Col + 1);
-			  }
-
-			  //Col++;
+			  gotoxy(Fil + 3, Col + 4);
+			  C = getchar();
+              cout<< "hola";
+			  str[Fil] = C;
+			  Coordenada(Fil, Col);
+			  Fil++;
 		   }
 
-		   while(C != 27);
-
-
+		   while(C != '\n');
 
 		   return true;
 		}
-
-
-
 
 
 
@@ -417,8 +294,6 @@
 
 		return 0;
 	 }
-
-
 
 
 
