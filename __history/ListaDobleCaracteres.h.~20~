@@ -26,8 +26,6 @@
 
    void MostrarLD(ListaLD &Cabeza);
 
-   void BuscarYRemplazar(ListaLD &Cabeza, ListaLD &Cola, string PalabraB, string PalabraR);
-
 //------------------------------------------------------------------------------
    #endif
 

@@ -2,7 +2,6 @@
 
    #ifndef ListaDobleCaracteresH
    #define ListaDobleCaracteresH
-   #include <iostream>
    #include <string>
    #include <cstdlib>
    using namespace std;
@@ -16,18 +15,12 @@
 	  struct CaracteresLD *ante;
    };
 
-   typedef struct CaracteresLD *ListaLD;
+	typedef struct CaracteresLd *ListaLD;
 
-   void InsertarLDFinal(ListaLD &Cabeza, ListaLD &Cola, string Caracter);
+	void InsertarLDInicio(ListaLD *Cabeza, ListaLD *Cola, string Caracter);
 
-   void Borrar(ListaLD &Cabeza, ListaLD &Cola, string Caracter);
-
-   void BorrarUltimo(ListaLD &Cola);
-
-   void MostrarLD(ListaLD &Cabeza);
-
-   void BuscarYRemplazar(ListaLD &Cabeza, ListaLD &Cola, string PalabraB, string PalabraR);
+	//void InsertarLDAtras(ListaLD *Lista, string Caracter);
 
 //------------------------------------------------------------------------------
-   #endif
+#endif
 

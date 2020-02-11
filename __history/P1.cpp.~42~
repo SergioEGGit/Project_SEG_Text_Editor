@@ -14,6 +14,7 @@
    #include <conio.h>
    #include <string>
    #include <windows.h>
+   #include <ListaDobleCaracteres.h>
    using namespace std;
 
 //----------------------------------Variables-----------------------------------
@@ -26,7 +27,7 @@
 
 	 //---------------------------------Menú-------------------------------
 
-		void menu()
+		void Menu()
 		{
 		   //Información
 		   gotoxy ((Ancho - 2)/2 - 20, 2);
@@ -102,7 +103,7 @@
 		   gotoxy(Col2,Fil2);
 		   cout << (char)188;
 
-		   menu();
+		   Menu();
 		}
 
 		void MarcoPrincipal(int Col1, int Col2, int Fil1, int Fil2)
@@ -203,23 +204,30 @@
 			Alto = (GetSystemMetrics(SM_CYSCREEN) / 19) + 1;
 		}
 
-	 //------------------------------Editor--------------------------------
+
+	//------------------------------Editor--------------------------------
 
 		void Coordenada(int x, int y)
 		{
-		   gotoxy(150, 45);
-		   cout<< "           ";
-		   gotoxy(150, 45);
+		   gotoxy(Ancho - 18, Alto + 4);
+		   cout<< "             ";
+		   gotoxy(Ancho - 18, Alto + 4);
 		   cout<< "C: " << y << " F: " << x;
 		}
 
 		bool Editor()
 		{
-		   int C = 0;
+		   //Variables
+		   int Ascii = 0;
 		   int Col = 1;
 		   int Fil = 1;
-		   char str[1000];
-
+		   int Filas = Alto - 6;
+		   int Id = 0;
+		   string BYR = "";
+		   char C[100000];
+		   string Carac;
+		   ListaDobleCaracteres listaLD = NULL;
+		   //Fijar Columna Y Fila
 		   Coordenada(Fil, Col);
 
 		   //Fijar Cursor
@@ -227,54 +235,147 @@
 
 		   do
 		   {
-			  gotoxy(Col + 4, Fil + 3);
-			  C = getche();
-			  //cout<< C;
-			  str[Col] = C;
-			  Col++;
-			  switch(C)
+			  if(Fil <= Filas)
 			  {
-				 case 8:
-					Col = Col - 1;
-					gotoxy(Col + 4, Fil + 3);
-					cout<< " ";
-				 break;
+				 gotoxy(Col + 4, Fil + 3);
+				 Ascii = getche();
+				 C[Col] = Ascii;
+				 Carac = C[Col];
+				 Id = AutoidLD(listaLD) + 1;
+				 InsertarLD(listaLD, Id, Fil, Col, Carac);
+				 Col++;
 
-				 case 13:
-					if(Fil <= 36)
+				 switch(Ascii)
+				 {
+					case 8:
+					   if(Col > 2)
+					   {
+						  Col = Col - 2;
+						  Coordenada(Fil, Col);
+						  gotoxy(Col + 4, Fil + 3);
+						  cout<< " ";
+					   }
+					   else
+					   {
+						  Col = 1;
+						  Coordenada(Fil, Col);
+						  gotoxy(Col + 4, Fil + 3);
+					   }
+					break;
+
+					case 13:
+						  if(Fil <= Filas)
+						  {
+							 Fil = Fil + 1;
+							 Col = 1;
+						  }
+						  if(Fil == Filas + 1)
+						  {
+                             Fil = Fil + 1;
+							 Col = 0;
+						  }
+					break;
+
+					case 23:
+					   gotoxy(4, Alto - 1);
+					   cout<< "Buscar Y Remplazar: "; cin>> BYR;
+					   gotoxy(4, Alto - 1);
+					   cout<< "                                  ";
+					break;
+				 }
+
+				 if(Col >= Ancho - 9)
+				 {
+					if(Fil <= Filas)
 					{
-					   Fil = Fil + 1;
+                       Fil = Fil + 1;
 					   Col = 1;
 					}
-					if(Fil == 37)
+					if(Fil == Filas + 1)
 					{
-					   Fil = Fil + 1;
-					   Col = Col - 1;
+                       Fil = Fil + 1;
+					   Col = 0;
 					}
-				 break;
+				 }
+
+				 if(Fil >= Filas + 2)
+				 {
+					Fil = Filas + 1;
+				 }
+
+
+				 if(Fil <= Filas)
+				 {
+					Coordenada(Fil, Col);
+				 }
+
+				 if(Fil == Filas + 1)
+				 {
+					Coordenada(Fil, Col + 1);
+				 }
 			  }
 
-			  if(Col >= 159)
+			  if(Fil == Filas + 1)
 			  {
-				 Fil = Fil + 1;
-				 Col = 1;
-			  }
+				 gotoxy(Col + 5, Fil + 3);
+				 Ascii = getche();
+				 C[Col + 1] = Ascii;
+				 Col++;
+				 switch(Ascii)
+				 {
+					case 8:
+					   if(Col > 1)
+					   {
+						  Col = Col - 2;
+						  Coordenada(Fil, Col + 1);
+						  gotoxy(Col + 5, Fil + 3);
+						  cout<< " ";
+					   }
+					   else
+					   {
+						  Col = 0;
+						  Coordenada(Fil, Col + 1);
+						  gotoxy(Col + 5, Fil + 3);
+					   }
+					break;
 
-			  if(Fil >= 38)
-			  {
-				 Fil = 37;
+					case 13:
+						  Fil = Fil + 1;
+						  Col = Col - 1;
+					break;
+
+                    case 23:
+					   cout<< " ";
+					   gotoxy(4, Alto - 1);
+					   cout<< "Buscar Y Remplazar: "; cin>> BYR;
+					   gotoxy(4, Alto - 1);
+					   cout<< "                                  ";
+					break;
+				 }
+
+				 if(Col >= Ancho - 10)
+				 {
+					Fil = Fil + 1;
+					Col = Col - 1;
+				 }
+
+				 if(Fil >= Filas + 2)
+				 {
+					Fil = Filas + 1;
+				 }
+
+				 Coordenada(Fil, Col + 1);
 			  }
-			  Coordenada(Fil, Col);
 		   }
 
-		   while(C != 27);
+		   while(Ascii != 27);
 
+		   gotoxy(4,6);
+		   ImprimirLD(listaLD);
 
 
 		   return true;
 		}
-
-
 
 //-------------------------------------Main-------------------------------------
 
@@ -328,6 +429,8 @@
 
 		return 0;
 	 }
+
+
 
 
 

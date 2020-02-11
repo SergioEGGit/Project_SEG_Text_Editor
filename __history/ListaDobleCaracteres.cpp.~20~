@@ -47,13 +47,13 @@
 	  {
 		 auxq = auxp;
 		 auxp = auxp -> sgte;
+
 	  }
 
-	  if (auxq == NULL)
+	  if (auxp == NULL)
 	  {
 		 cout<< "No Existe El Caracter";
 	  }
-
 	  else
 	  {
 		 if(Cabeza == Cola)
@@ -99,56 +99,7 @@
 	  }
    }
 
-   void BuscarYRemplazar(ListaLD &Cabeza, ListaLD &Cola, string PalabraB, string PalabraR)
-   {
-	  ListaLD aux = Cabeza;
-	  ListaLD auxE = NULL;
-	  string PalabraBuscada = " ";
-	  int NumeroE = 0;
 
-	  while(true)
-	  {
-		 if(Cabeza == NULL)
-		 {
-			cout<< "Lista Vacia";
-			break;
-		 }
-
-		 else if(Cabeza -> Caracter == " " && NumeroE == 0)
-		 {
-			cout<< "Entre Espacio 0";
-			auxE = aux;
-			NumeroE++;
-			aux = aux -> sgte;
-		 }
-
-		 else if(aux -> Caracter == " " && NumeroE == 1)
-		 {
-			cout<< "Entre Al Espacio 1";
-			if(PalabraBuscada == PalabraB)
-			{
-			   for(int i = 0; i <= PalabraR.length(); i++)
-			   {
-				  char C = PalabraR.at(i);
-				  ListaLD auxN = new(struct CaracteresLD);
-				  auxN -> Caracter = C;
-				  auxE -> sgte = auxN;
-				  auxN -> ante = auxE;
-				  auxE = auxE -> sgte;
-			   }
-			   auxE = aux;
-			   NumeroE = 1;
-			   aux = aux -> sgte;
-			}
-			else
-			{
-			   PalabraBuscada += aux -> Caracter;
-			   aux = aux -> sgte;
-			}
-		 }
-         //aux = aux -> sgte;
-	  }
-   }
 
 
 

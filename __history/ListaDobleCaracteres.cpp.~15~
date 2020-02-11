@@ -1,0 +1,29 @@
+//---------------------------------------------------------------------------
+
+   #pragma hdrstop
+
+//---------------------------------Librerias---------------------------------
+   #include <iostream>
+   #include <stdio.h>
+   #include <conio.h>
+   #include <string>
+   #include <cstdlib>
+   #include <windows.h>
+   #include "ListaDobleCaracteres.h"
+   using namespace std;
+
+//---------------------------------------------------------------------------
+   #pragma package(smart_init)
+
+//---------------------------------Métodos-----------------------------------
+
+   void InsertarLDInicio(string caracter)
+   {
+
+   }
+
+
+
+
+
+

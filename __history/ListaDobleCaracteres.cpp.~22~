@@ -108,13 +108,12 @@
 
 	  while(true)
 	  {
-		 if(Cabeza == NULL)
+		 if(aux == NULL)
 		 {
 			cout<< "Lista Vacia";
-			break;
 		 }
 
-		 else if(Cabeza -> Caracter == " " && NumeroE == 0)
+		 else if(aux -> Caracter == " " && NumeroE == 0)
 		 {
 			cout<< "Entre Espacio 0";
 			auxE = aux;

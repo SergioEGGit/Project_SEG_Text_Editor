@@ -108,15 +108,13 @@
 
 	  while(true)
 	  {
-		 if(Cabeza == NULL)
+		 if(aux == NULL)
 		 {
 			cout<< "Lista Vacia";
-			break;
 		 }
 
-		 else if(Cabeza -> Caracter == " " && NumeroE == 0)
+		 else if(aux -> Caracter == " " && NumeroE == 0)
 		 {
-			cout<< "Entre Espacio 0";
 			auxE = aux;
 			NumeroE++;
 			aux = aux -> sgte;
@@ -124,7 +122,6 @@
 
 		 else if(aux -> Caracter == " " && NumeroE == 1)
 		 {
-			cout<< "Entre Al Espacio 1";
 			if(PalabraBuscada == PalabraB)
 			{
 			   for(int i = 0; i <= PalabraR.length(); i++)
@@ -144,9 +141,8 @@
 			{
 			   PalabraBuscada += aux -> Caracter;
 			   aux = aux -> sgte;
-			}
+            }
 		 }
-         //aux = aux -> sgte;
 	  }
    }
 
