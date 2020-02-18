@@ -22,8 +22,6 @@
 
 	void InsertarFinalLDC(ListaLDC &Cabeza, ListaLDC &Cola, string Caracter);
 
-	void BorrarPrimeroLDC(ListaLDC &Cabeza);
-
 	void BorrarUltimoLDC(ListaLDC &Cola);
 
 	void MostrarLDC(ListaLDC &Cabeza, int margenIzquierdo, int margenSuperior, int margenInferior, int margenDerecho);
@@ -34,7 +32,7 @@
 
 	void ReemplazarLDC(ListaLDC &Cabeza, ListaLDC &Primero, ListaLDC &Esp2, string PalabraReemplazar);
 
-	int BuscarRLCD(ListaLDC &Cabeza, ListaLDC &Cola, string PalabraReemplazar, string PalabraBuscar);
+	void BuscarRLCD(ListaLDC &Cabeza, ListaLDC &Cola, string PalabraReemplazar, string PalabraBuscar);
 
 //------------------------------------------------------------------------------
 

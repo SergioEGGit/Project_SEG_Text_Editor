@@ -27,6 +27,7 @@
 	#include <ListaDobleCaracteres.h>
 	#include <ListaDoblePalabras.h>
 	#include <ListaCircularArchivosR.h>
+    #include <PilaLog.h>
 	using namespace std;
 
 //---------------------------------Variables------------------------------------
@@ -523,10 +524,9 @@
 			int PalabrasAF;
 
 
-            ListaLDC CabezaC = NULL;
+			ListaLDC CabezaC = NULL;
 			ListaLDC ColaC = NULL;
-			ListaLDP CabezaP = NULL;
-			ListaLDP ColaP = NULL;
+			PilaPL PilaL = NULL;
 
 			do
 			{
@@ -671,31 +671,38 @@
 						trimmed(PalabraBuscar);
 						trimmed(PalabraReemplazar);
 						PalabrasAF = BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
-                        MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
-						Busqueda = "";
-						PalabraBuscar = "";
-						PalabraReemplazar = "";
-                        gotoxy(margenIzquierdo + 1, margenInferior + 6);
+						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
-						Color(0,10);
+						Color(0, 10);
 						if(PalabrasAF > 0)
 						{
 							if(PalabrasAF == 1)
 							{
+
+								MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
 								cout<< PalabrasAF << " Palabra Afectada";
+								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, "No Revertido", "Null", 0);
+								MostrarPL(PilaL);
 							}
 							else
 							{
+
+								MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
 								cout<< PalabrasAF << " Palabras Afectadas";
+								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, "No Revertido", "Null", 0);
+								MostrarPL(PilaL);
 							}
 						}
 						else
 						{
 							Color(0, 4);
-                            cout<< "No Se Encontro La Palabra Indicada";
+							cout<< "No Se Encontrodo La Palabra Indicada";
                         }
 						getch();
+						Busqueda = "";
+						PalabraBuscar = "";
+						PalabraReemplazar = "";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 					break;

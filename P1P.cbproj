@@ -107,9 +107,17 @@
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="ListaCircularArchivosR.cpp">
+            <DependentOn>ListaCircularArchivosR.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <CppCompile Include="ListaDobleCaracteres.cpp">
             <DependentOn>ListaDobleCaracteres.h</DependentOn>
             <BuildOrder>2</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ListaDoblePalabras.cpp">
+            <DependentOn>ListaDoblePalabras.h</DependentOn>
+            <BuildOrder>3</BuildOrder>
         </CppCompile>
         <CppCompile Include="P1.cpp">
             <BuildOrder>1</BuildOrder>

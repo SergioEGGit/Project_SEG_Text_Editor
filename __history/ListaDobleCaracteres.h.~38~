@@ -18,11 +18,7 @@
 
 	typedef struct CaracteresLD *ListaLDC;
 
-    void InsertarInicioLDC(ListaLDC &Cabeza, ListaLDC &Cola, string Caracter);
-
 	void InsertarFinalLDC(ListaLDC &Cabeza, ListaLDC &Cola, string Caracter);
-
-	void BorrarPrimeroLDC(ListaLDC &Cabeza);
 
 	void BorrarUltimoLDC(ListaLDC &Cola);
 
@@ -34,7 +30,7 @@
 
 	void ReemplazarLDC(ListaLDC &Cabeza, ListaLDC &Primero, ListaLDC &Esp2, string PalabraReemplazar);
 
-	int BuscarRLCD(ListaLDC &Cabeza, ListaLDC &Cola, string PalabraReemplazar, string PalabraBuscar);
+	void BuscarRLCD(ListaLDC &Cabeza, ListaLDC &Cola, string PalabraReemplazar, string PalabraBuscar);
 
 //------------------------------------------------------------------------------
 

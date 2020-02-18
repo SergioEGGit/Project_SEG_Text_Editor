@@ -195,8 +195,8 @@
 
 	int BuscarRLCD(ListaLDC &Cabeza, ListaLDC &Cola, string PalabraBuscar, string PalabraReemplazar)
 	{
-		InsertarInicioLDC(Cabeza, Cola, " ");
-		InsertarFinalLDC(Cabeza, Cola, " ");
+		//InsertarInicioLDC(Cabeza, Cola, " ");
+		//InsertarFinalLDC(Cabeza, Cola, " ");
 		ListaLDC aux = Cabeza;
 		ListaLDC PrimeroC;
 		string PalabraEncontrada = "";
@@ -229,8 +229,8 @@
 			Cola = aux;
 		}
 
-		BorrarPrimeroLDC(Cabeza);
-	    BorrarUltimoLDC(Cola);
+		//BorrarPrimeroLDC(Cabeza);
+		//BorrarUltimoLDC(Cola);
 
 		return ContadorAF;
 	}

@@ -181,7 +181,7 @@
 			Esp = Primero -> ante;
 		}
 
-		for(int i = 0; i < PalabraReemplazar.length() - 1; i++)
+		for(int i = 0; i < PalabraReemplazar.length(); i++)
 		{
 			ListaLDC aux = new(struct CaracteresLD);
 			aux -> Caracter = PalabraReemplazar[i];
@@ -230,7 +230,7 @@
 		}
 
 		BorrarPrimeroLDC(Cabeza);
-	    BorrarUltimoLDC(Cola);
+		BorrarUltimoLDC(Cola);
 
 		return ContadorAF;
 	}

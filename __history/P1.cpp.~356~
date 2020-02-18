@@ -671,7 +671,7 @@
 						trimmed(PalabraBuscar);
 						trimmed(PalabraReemplazar);
 						PalabrasAF = BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
-                        MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+                        //MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
 						Busqueda = "";
 						PalabraBuscar = "";
 						PalabraReemplazar = "";
@@ -679,23 +679,15 @@
 						cout<<"                                                                         ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						Color(0,10);
-						if(PalabrasAF > 0)
+						if(PalabrasAF == 1)
 						{
-							if(PalabrasAF == 1)
-							{
-								cout<< PalabrasAF << " Palabra Afectada";
-							}
-							else
-							{
-								cout<< PalabrasAF << " Palabras Afectadas";
-							}
+							cout<< PalabrasAF << " Palabra Afectada";
 						}
 						else
 						{
-							Color(0, 4);
-                            cout<< "No Se Encontro La Palabra Indicada";
-                        }
-						getch();
+							cout<< PalabrasAF << " Palabras Afectadas";
+						}
+                        getch();
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 					break;

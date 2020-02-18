@@ -181,7 +181,7 @@
 			Esp = Primero -> ante;
 		}
 
-		for(int i = 0; i < PalabraReemplazar.length() - 1; i++)
+		for(int i = 0; i < PalabraReemplazar.length(); i++)
 		{
 			ListaLDC aux = new(struct CaracteresLD);
 			aux -> Caracter = PalabraReemplazar[i];
@@ -193,7 +193,7 @@
 		}
     }
 
-	int BuscarRLCD(ListaLDC &Cabeza, ListaLDC &Cola, string PalabraBuscar, string PalabraReemplazar)
+	void BuscarRLCD(ListaLDC &Cabeza, ListaLDC &Cola, string PalabraBuscar, string PalabraReemplazar)
 	{
 		InsertarInicioLDC(Cabeza, Cola, " ");
 		InsertarFinalLDC(Cabeza, Cola, " ");
@@ -208,8 +208,9 @@
 			{
 				if(PalabraEncontrada == PalabraBuscar)
 				{
-					ReemplazarLDC(Cabeza, PrimeroC, aux, PalabraReemplazar);
+					//ReemplazarLDC(Cabeza, PrimeroC, aux, PalabraReemplazar);
 					ContadorAF++;
+					//cout<< "Encontre La Palabra: " << PalabraEncontrada << endl;
 				}
 				PalabraEncontrada = "";
 			}
@@ -230,10 +231,9 @@
 		}
 
 		BorrarPrimeroLDC(Cabeza);
-	    BorrarUltimoLDC(Cola);
-
-		return ContadorAF;
-	}
+		BorrarUltimoLDC(Cola);
+		//cout<< "Hay " << ContadorAF << " Palabras Afectadas";
+    }
 
 
 

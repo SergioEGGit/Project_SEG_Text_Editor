@@ -1,0 +1,159 @@
+//---------------------------------------------------------------------------
+
+	#pragma hdrstop
+
+//---------------------------------Librerias---------------------------------
+
+	#include <iostream>
+	#include <stdio.h>
+	#include <conio.h>
+	#include <string>
+	#include <cstdlib>
+	#include <windows.h>
+	#include <fstream>
+	#include "ListaCircularArchivosR.h"
+	using namespace std;
+
+//---------------------------------------------------------------------------
+
+	#pragma package(smart_init)
+
+//---------------------------------Métodos-----------------------------------
+
+	void gotoxy(int x, int y)
+	{
+		COORD coord;
+		coord.X = x;
+		coord.Y = y;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	}
+
+	void InsertarInicioLCAR(ListaCAR &listaCAR, ListaCAR &Final, string Nombre, string Ruta)
+	{
+		ListaCAR aux = new(struct ArchivosRecientesLC);
+		aux -> Nombre = Nombre;
+		aux -> Ruta = Ruta;
+		aux -> sgte = NULL;
+
+		 if(listaCAR == NULL)
+		{
+			 listaCAR = aux;
+			 listaCAR -> sgte = listaCAR;
+			 Final = aux;
+        }
+		else
+		{
+			Final -> sgte = aux;
+			aux -> sgte = listaCAR;
+			Final = aux;
+		}
+
+	}
+
+	bool BuscarLCAR(ListaCAR &listaCAR, ListaCAR &Final, string Ruta)
+	{
+		ListaCAR aux = new(struct ArchivosRecientesLC);
+		int Contador = 1;
+		int Valor;
+		int Flag = 0;
+		bool Existe = false;
+
+		if(listaCAR != NULL)
+		{
+			aux = listaCAR;
+
+			do
+			{
+				if(aux -> Ruta == Ruta)
+				{
+					Existe = true;
+                    aux = aux -> sgte;
+					Flag = 1;
+				}
+				else
+				{
+					aux = aux -> sgte;
+					Contador++;
+				}
+			}
+			while(aux != listaCAR);
+
+			if(Flag == 0)
+			{
+				Existe = false;
+			}
+		}
+		else
+		{
+		   Existe = false;
+		}
+		return Existe;
+	}
+
+	void MostrarLCAR(ListaCAR &listaCAR, int margenDerecho, int margenInferior)
+	{
+		ListaCAR aux = listaCAR;
+		int i = 1;
+
+		if(listaCAR != NULL)
+		{
+			do
+			{
+			   gotoxy(margenDerecho - 15, margenInferior + i);
+			   cout<< i << ". " << aux -> Nombre;
+			   gotoxy(margenDerecho + 15, margenInferior + i);
+			   cout<<aux -> Ruta <<endl;
+			   gotoxy(margenDerecho - 15, margenInferior + i + 2);
+			   cout<< " " <<endl;
+			   aux = aux -> sgte;
+			   i++;
+		   }
+		   while(aux != listaCAR);
+		}
+	}
+
+	void ReporteArchivosLCAR(ListaCAR &listaCAR, ListaCAR &Final)
+	{
+		ofstream Reporte4("Reporte4.dot");
+		ListaCAR aux = listaCAR;
+		Reporte4<< "digraph G" << endl;
+		Reporte4<< "{" << endl;
+		Reporte4<< "node [shape = box, fontname = Arial, color = blue];" <<endl;
+		int contador = 0;
+		string temp[10000];
+		string Asc = "";
+
+		if(listaCAR != NULL)
+		{
+			do
+			{
+				Reporte4<< "A" << contador << " [label = " <<"\"" << aux -> Nombre << "\"l" << aux -> Ruta <<"\"]" <<endl;
+				temp[contador] = "A" + to_string(contador);
+				contador++;
+				aux = aux -> sgte;
+			}
+			while(aux != listaCAR);
+
+			for(int i = 0; i < contador; i++)
+			{
+				if(i < contador - 1)
+				{
+					Asc = Asc + temp[i] + "->";
+				}
+				else
+				{
+					Asc = Asc + temp[i];
+				}
+			}
+			Asc = Asc + "->" + "A0";
+			Reporte4<< Asc <<endl;
+			Reporte4<< " " <<endl;
+			Reporte4<< "}";
+			Reporte4.close();
+
+			//Generar Imagen
+			system("C:\\\"Program Files (x86)\"\\Graphviz2.38\\bin\\dot.exe  -Tpng Reporte4.dot -o Reporte4.png");
+			//Abrir Imagen
+			system("C:\\Usac\\\"Estructuras De Datos\"\\EDD_1S2020_P1_201801628\\Win32\\Debug\\Reporte4.png &" );
+		}
+	}

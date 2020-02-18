@@ -679,7 +679,7 @@
 						cout<<"                                                                         ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						Color(0,10);
-						if(PalabrasAF > 0)
+						if(PalabraAF > 0)
 						{
 							if(PalabrasAF == 1)
 							{

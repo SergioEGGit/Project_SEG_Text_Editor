@@ -1,0 +1,25 @@
+//------------------------------------------------------------------------------
+
+	#ifndef ListaCircularArchivosRH
+	#define ListaCircularArchivosRH
+	#include <iostream>
+	#include <string>
+	#include <cstdlib>
+	using namespace std;
+
+//-------------------------------Estructura-------------------------------------
+
+	struct ArchivosRecientesLC
+	{
+		string Nombre;
+		string Ruta;
+		struct ArchivoRecientesLC *sgte;
+	};
+
+	typedef struct ArchivoRecientesLC *ListaCAR;
+
+	void InsertarInicioLCAR(ListaCAR &listaCAR);
+
+//------------------------------------------------------------------------------
+
+	#endif

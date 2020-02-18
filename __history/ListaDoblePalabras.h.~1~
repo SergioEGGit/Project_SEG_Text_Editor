@@ -1,0 +1,22 @@
+//---------------------------------------------------------------------------
+
+	#ifndef ListaDoblePalabrasH
+	#define ListaDoblePalabrasH
+
+	struct PalabrasLD
+	{
+		string Palabra;
+		struct PalabrasLD *sgte;
+		struct PalabrasLD *ante;
+	};
+
+	typedef struct PalabrasLD *ListaLDP;
+
+	void InsertarLDPFinal(ListaLDP &Cabeza, ListaLDP &Cola, string Palabra);
+
+	void BorrarUltimoLDP(ListaLDP &Cola);
+
+	void MostrarLDP(ListaLDP &Cabeza);
+
+//---------------------------------------------------------------------------
+#endif
