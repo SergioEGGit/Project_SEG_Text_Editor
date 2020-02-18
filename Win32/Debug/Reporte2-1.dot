@@ -1,0 +1,4 @@
+digraph G
+{
+Revertidos [shape = cds, fontname = Arial, fontcolor = black, style=filled, fillcolor = red]
+node [shape = box, fontname = Arial, fontcolor = black, color = red];

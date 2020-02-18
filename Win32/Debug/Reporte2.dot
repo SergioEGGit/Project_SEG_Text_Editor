@@ -1,0 +1,11 @@
+digraph G
+{
+LogCambios [shape = cds, fontname = Arial, fontcolor = black, style=filled, fillcolor = green]
+node [shape = box, fontname = Arial, fontcolor = black, color = green];
+A0 [label = "Palabra Buscar: Hanamaru\lPalabra Reemplazar: Rin\lEstado: No Revertido\lPalabra: Null\lPosicion: Null\l"]
+A1 [label = "Palabra Buscar: Ruby\lPalabra Reemplazar: Eli\lEstado: No Revertido\lPalabra: Null\lPosicion: Null\l"]
+A2 [label = "Palabra Buscar: Honoka\lPalabra Reemplazar: Kotori\lEstado: No Revertido\lPalabra: Null\lPosicion: Null\l"]
+{ rank = same A0 A1 A2 }
+A0->A1->A2
+ 
+}

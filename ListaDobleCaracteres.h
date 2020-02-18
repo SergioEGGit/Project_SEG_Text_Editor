@@ -26,7 +26,7 @@
 
 	void BorrarUltimoLDC(ListaLDC &Cola);
 
-	void MostrarLDC(ListaLDC &Cabeza, int margenIzquierdo, int margenSuperior, int margenInferior, int margenDerecho);
+	string MostrarLDC(ListaLDC &Cabeza, int margenIzquierdo, int margenSuperior, int margenInferior, int margenDerecho);
 
     void LeerLDC(ListaLDC &Cabeza, int margenIzquierdo, int margenSuperior, int margenInferior, int margenDerecho);
 

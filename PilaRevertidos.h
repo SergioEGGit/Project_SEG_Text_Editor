@@ -1,0 +1,34 @@
+//------------------------------------------------------------------------------
+
+	#ifndef PilaRevertidosH
+	#define PilaRevertidosH
+	#include <iostream>
+	#include <string>
+	#include <cstdlib>
+	using namespace std;
+
+//-------------------------------Estructura-------------------------------------
+
+	struct CambiosPR
+	{
+		string PalabraBuscar;
+		string PalabraReemplazar;
+		bool Estado;
+		string Palabra;
+		int Posicion;
+		struct CambiosPR *sgte;
+	};
+
+	typedef struct CambiosPR *PilaPR;
+
+	void InsertarPR(PilaPR &Pila, string PalabraBuscar, string PalabraReemplazar, bool Estado, string Palabra, int Posicion);
+
+	void MostrarPR(PilaPR &Pila);
+
+	string EliminarPR(PilaPR &Pila, string PalabraBuscar, string PalabraReemplazar, bool Estado, string Palabra, int Posicion);
+
+    void ReporteBuscadosPR(PilaPR &Pila);
+
+//------------------------------------------------------------------------------
+
+	#endif

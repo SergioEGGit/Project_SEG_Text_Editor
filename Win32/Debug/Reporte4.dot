@@ -2,8 +2,8 @@ digraph G
 {
 node [shape = box, fontname = Arial, color = green];
 A0 [label = "Entrada.txt\lC:\\Usac\\Entrada.txt"]
-A1 [label = "Entrada2.txt\lC:\\Usac\\Entrada2.txt"]
-A2 [label = "Entrada3.txt\lC:\\Usac\\Entrada3.txt"]
+A1 [label = "Entrada3.txt\lC:\\Usac\\Entrada3.txt"]
+A2 [label = "Entrada2.txt\lC:\\Usac\\Entrada2.txt"]
 { rank = same A0 A1 A2 }
 A0->A1->A2->A0
  

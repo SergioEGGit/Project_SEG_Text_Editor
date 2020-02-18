@@ -27,6 +27,8 @@
 	#include <ListaDobleCaracteres.h>
 	#include <ListaDoblePalabras.h>
 	#include <ListaCircularArchivosR.h>
+	#include <PilaLog.h>
+	#include <PilaRevertidos.h>
 	using namespace std;
 
 //---------------------------------Variables------------------------------------
@@ -37,6 +39,8 @@
 	bool ArchivoOK = true;
 	string PalabraBuscar = "";
 	string PalabraReemplazar = "";
+	string CoorFil = "";
+	string CoorCol = "";
 	string RutaArchivo = "";
 	ListaCAR listaCAR = NULL;
 	ListaCAR Final = NULL;
@@ -80,11 +84,11 @@
 			return s;
 		}
 
-	//-----------------------------Split Ruta------------------------------
+	//--------------------------------Split--------------------------------
 
 		string SepararRuta(string RutaArchivo)
 		{
-			char Cadena[1000];
+			char Cadena[100000];
 			char Delimitador[] = "\\";
 			string Res;
 
@@ -106,7 +110,7 @@
 
 		void SepararBuscar(string Busqueda)
 		{
-            char Cadena[1000];
+			char Cadena[100000];
 			char Delimitador[] = ";";
 			int contador = 0;
 
@@ -132,6 +136,35 @@
 				}
 			}
         }
+
+		void Separarcoor(string Coor)
+		{
+            char Cadena[1000];
+			char Delimitador[] = ";";
+			int contador = 0;
+
+			//Convertir String A Char
+			strcpy(Cadena ,Coor.c_str());
+
+			char *Tokens = strtok(Cadena, Delimitador);
+
+			if(Tokens != NULL)
+			{
+				while(Tokens != NULL)
+				{
+					if(contador == 0)
+					{
+						CoorCol = Tokens;
+					}
+					if(contador == 1)
+					{
+						CoorFil = Tokens;
+                    }
+					Tokens = strtok(NULL, Delimitador);
+                    contador++;
+				}
+			}
+		}
 
 	//-------------------------------Menú----------------------------------
 
@@ -489,7 +522,7 @@
 			}
 			else
 			{
-				cout<< "Error de apertura del archivo." << endl;
+				//cout<< "Error de apertura del archivo." << endl;
 			}
 			FicheroSalida.close();
 		}
@@ -508,25 +541,31 @@
 			int margenDerecho = Ancho - 9;
 			int margenInferior = Alto - 6;
 			char C[100000];
-			char B[1000];
-			char R[1000];
-			char G[1000];
+			char B[100000];
+			char R[100000];
+			char G[100000];
 			bool salir = false;
 			string Cadena;
 			bool tempo = true;
 			string Caracter;
 			string Busqueda;
 			string Reporte;
+			string Res;
+			string Coor;
 			int Reportei;
 			int Buscai;
 			int Guardari;
 			int PalabrasAF;
+			bool ctrlx = false;
 
 
-            ListaLDC CabezaC = NULL;
+			ListaLDC CabezaC = NULL;
 			ListaLDC ColaC = NULL;
 			ListaLDP CabezaP = NULL;
 			ListaLDP ColaP = NULL;
+
+			PilaPL PilaL = NULL;
+			PilaPR PilaR = NULL;
 
 			do
 			{
@@ -612,6 +651,62 @@
 						}
 					break;
 
+                    case 25:
+						Res = EliminarPR(PilaR, PalabraBuscar, PalabraReemplazar, true, "Null", -1);
+						Res = trimmed(Res);
+						SepararBuscar(Res);
+						PalabraBuscar = trimmed(PalabraBuscar);
+						PalabraReemplazar = trimmed(PalabraReemplazar);
+						if(PalabraBuscar.length() > 0)
+						{
+							BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
+							InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+						}
+						Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+						Coor = trimmed(Coor);
+						Separarcoor(Coor);
+						CoorCol = trimmed(CoorCol);
+						CoorFil = trimmed(CoorFil);
+						col = stoi(CoorCol) + 1;
+						fila = stoi(CoorFil);
+						Coor = "";
+						CoorCol = "";
+						CoorFil = "";
+						PalabraBuscar = "";
+						PalabraReemplazar = "";
+						Res = "";
+						gotoxy(col + margenIzquierdo,fila + margenSuperior);
+						cout<< "  ";
+					break;
+
+					case 26:
+						Res = EliminarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+						Res = trimmed(Res);
+						SepararBuscar(Res);
+						PalabraBuscar = trimmed(PalabraBuscar);
+						PalabraReemplazar = trimmed(PalabraReemplazar);
+						if(PalabraBuscar.length() > 0)
+						{
+							BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
+							InsertarPR(PilaR, PalabraReemplazar, PalabraBuscar, true, "Null", -1);
+						}
+                        Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+						Coor = trimmed(Coor);
+						Separarcoor(Coor);
+						CoorCol = trimmed(CoorCol);
+						CoorFil = trimmed(CoorFil);
+						col = stoi(CoorCol) + 1;
+						fila = stoi(CoorFil);
+						Coor = "";
+						CoorCol = "";
+						CoorFil = "";
+						PalabraBuscar = "";
+						PalabraReemplazar = "";
+						Res = "";
+						gotoxy(col + margenIzquierdo,fila + margenSuperior);
+						cout<< "  ";
+					break;
+
 					case 27:
 						salir = true;
 						gotoxy(col + margenIzquierdo,fila + margenSuperior);
@@ -619,7 +714,7 @@
 					break;
 
 					case 23:
-                        gotoxy(col + margenIzquierdo,fila + margenSuperior);
+						gotoxy(col + margenIzquierdo,fila + margenSuperior);
 						cout<<" ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						Color(0,4);
@@ -644,6 +739,7 @@
 								case 24:
 									gotoxy(margenIzquierdo + 21 + Buscai, margenInferior + 6);
 									cout<< " ";
+									ctrlx = true;
 									AsciiB = 0;
 								break;
 
@@ -666,16 +762,26 @@
 						while(AsciiB != 0);
 						Buscai = 0;
 						gotoxy(6, 6);
-						trimmed(Busqueda);
+						Busqueda = trimmed(Busqueda);
 						SepararBuscar(Busqueda);
-						trimmed(PalabraBuscar);
-						trimmed(PalabraReemplazar);
-						PalabrasAF = BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
-                        MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+						PalabraBuscar = trimmed(PalabraBuscar);
+						PalabraReemplazar = trimmed(PalabraReemplazar);
+						if(PalabraBuscar.length() > 0)
+						{
+							PalabrasAF = BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
+						}
+						Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+						Coor = trimmed(Coor);
+						Separarcoor(Coor);
+						CoorCol = trimmed(CoorCol);
+						CoorFil = trimmed(CoorFil);
+						col = stoi(CoorCol) + 1;
+						fila = stoi(CoorFil);
+						Coor = "";
+						CoorCol = "";
+						CoorFil = "";
 						Busqueda = "";
-						PalabraBuscar = "";
-						PalabraReemplazar = "";
-                        gotoxy(margenIzquierdo + 1, margenInferior + 6);
+						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						Color(0,10);
@@ -684,23 +790,35 @@
 							if(PalabrasAF == 1)
 							{
 								cout<< PalabrasAF << " Palabra Afectada";
+								getch();
+								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+								MostrarPL(PilaL);
 							}
 							else
 							{
 								cout<< PalabrasAF << " Palabras Afectadas";
+								getch();
+								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+								MostrarPL(PilaL);
 							}
 						}
 						else
 						{
-							Color(0, 4);
-                            cout<< "No Se Encontro La Palabra Indicada";
-                        }
-						getch();
+							if(ctrlx == false)
+							{
+								Color(0, 4);
+								cout<< "No Se Encontro La Palabra Indicada";
+							}
+						}
+						PalabraBuscar = "";
+						PalabraReemplazar = "";
+						ctrlx = false;
+						PalabrasAF = 0;
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 					break;
 
-                    case 3:
+					case 3:
 						gotoxy(col + margenIzquierdo,fila + margenSuperior);
 						cout<<" ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
@@ -749,12 +867,17 @@
 						Reportei = 0;
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                                                    ";
-                        Reporte = trimmed(Reporte);
+						Reporte = trimmed(Reporte);
 						if(Reporte == "1")
 						{
 							ReporteListaLDC(CabezaC, ColaC);
 						}
-                        Reporte = "";
+						if(Reporte == "2")
+						{
+							ReporteBuscadosPL(PilaL);
+                            ReporteBuscadosPR(PilaR);
+                        }
+						Reporte = "";
 					break;
 
 					case 19:
@@ -765,7 +888,7 @@
 						cout<<"Guardar: [Ruta Archivo]";
 						Color(0,15);
 						gotoxy(margenIzquierdo + 25, margenInferior + 6);
-                        do
+						do
 						{
 							gotoxy(margenIzquierdo + 25 + Guardari, margenInferior + 6);
 
@@ -805,7 +928,7 @@
 						}
 						while(AsciiG != 0);
 						Guardari = 0;
-                        gotoxy(margenIzquierdo + 1, margenInferior + 6);
+						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 						gotoxy(5, 5);
 						EscribirArchivo(RutaArchivo, CabezaC, ColaC, col, fila, margenIzquierdo, margenInferior, margenSuperior);
@@ -876,9 +999,9 @@
 			int margenDerecho = Ancho - 9;
 			int margenInferior = Alto - 6;
 			char C[100000];
-			char B[1000];
-			char R[1000];
-			char G[1000];
+			char B[100000];
+			char R[100000];
+			char G[100000];
 			bool salir = false;
 			string Cadena;
 			bool tempo = true;
@@ -886,19 +1009,27 @@
 			string Busqueda;
 			string Reporte;
             string NombreArchivo;
+			string Res;
+			string Coor;
 			int Reportei;
 			int Buscai;
 			int Guardari;
+			int PalabrasAF;
+			bool ctrlx = false;
+
 
 			ListaLDC CabezaC = NULL;
 			ListaLDC ColaC = NULL;
 			ListaLDP CabezaP = NULL;
 			ListaLDP ColaP = NULL;
 
+			PilaPL PilaL = NULL;
+			PilaPR PilaR = NULL;
+
 			//Abrir Archivo
 			if(Archivo == "")
 			{
-                gotoxy(col + margenIzquierdo,fila + margenSuperior);
+				gotoxy(col + margenIzquierdo,fila + margenSuperior);
 				cout<<" ";
 				gotoxy(margenIzquierdo + 1, margenInferior + 6);
 				Color(0,4);
@@ -906,7 +1037,7 @@
 				Color(0,15);
 				gotoxy(margenIzquierdo + 31, margenInferior + 6);
 				cin>> RutaArchivo;
-                gotoxy(margenIzquierdo + 1, margenInferior + 6);
+				gotoxy(margenIzquierdo + 1, margenInferior + 6);
 				cout<<"                                                                                               ";
 			}
 			else
@@ -916,17 +1047,27 @@
 			}
 
 			LeerArchivo(RutaArchivo, CabezaC, ColaC, salir);
-			MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+			Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+			Coor = trimmed(Coor);
+			Separarcoor(Coor);
+			CoorCol = trimmed(CoorCol);
+			CoorFil = trimmed(CoorFil);
+			col = stoi(CoorCol) + 1;
+			fila = stoi(CoorFil);
+			Coor = "";
+			CoorCol = "";
+			CoorFil = "";
 			NombreArchivo = SepararRuta(RutaArchivo);
 
 			if(ArchivoOK == true)
 			{
-                if(BuscarLCAR(listaCAR, Final, RutaArchivo) == false)
+				if(BuscarLCAR(listaCAR, Final, RutaArchivo) == false)
 				{
-                    InsertarInicioLCAR(listaCAR, Final, NombreArchivo, RutaArchivo);
+					InsertarInicioLCAR(listaCAR, Final, NombreArchivo, RutaArchivo);
 				}
 
-                do
+                RutaArchivo = "";
+				do
 				{
 					//Fijar Coordenada
 					Coordenada(col, fila);
@@ -1010,14 +1151,70 @@
 							}
 						break;
 
-						case 27:
-							salir = true;
-							gotoxy(col + margenIzquierdo,fila + margenSuperior);
-							cout<< "  ";
-						break;
+						case 25:
+						Res = EliminarPR(PilaR, PalabraBuscar, PalabraReemplazar, true, "Null", -1);
+						Res = trimmed(Res);
+						SepararBuscar(Res);
+						PalabraBuscar = trimmed(PalabraBuscar);
+						PalabraReemplazar = trimmed(PalabraReemplazar);
+						if(PalabraBuscar.length() > 0)
+						{
+							BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
+							InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+						}
+						Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+						Coor = trimmed(Coor);
+						Separarcoor(Coor);
+						CoorCol = trimmed(CoorCol);
+						CoorFil = trimmed(CoorFil);
+						col = stoi(CoorCol) + 1;
+						fila = stoi(CoorFil);
+						Coor = "";
+						CoorCol = "";
+						CoorFil = "";
+						PalabraBuscar = "";
+						PalabraReemplazar = "";
+						Res = "";
+						gotoxy(col + margenIzquierdo,fila + margenSuperior);
+						cout<< "  ";
+					break;
 
-						case 23:
-                        gotoxy(col + margenIzquierdo,fila + margenSuperior);
+					case 26:
+						Res = EliminarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+						Res = trimmed(Res);
+						SepararBuscar(Res);
+						PalabraBuscar = trimmed(PalabraBuscar);
+						PalabraReemplazar = trimmed(PalabraReemplazar);
+						if(PalabraBuscar.length() > 0)
+						{
+							BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
+							InsertarPR(PilaR, PalabraReemplazar, PalabraBuscar, true, "Null", -1);
+						}
+						Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+						Coor = trimmed(Coor);
+						Separarcoor(Coor);
+						CoorCol = trimmed(CoorCol);
+						CoorFil = trimmed(CoorFil);
+						col = stoi(CoorCol) + 1;
+						fila = stoi(CoorFil);
+						Coor = "";
+						CoorCol = "";
+						CoorFil = "";
+						PalabraBuscar = "";
+						PalabraReemplazar = "";
+						Res = "";
+						gotoxy(col + margenIzquierdo,fila + margenSuperior);
+						cout<< "  ";
+					break;
+
+					case 27:
+						salir = true;
+						gotoxy(col + margenIzquierdo,fila + margenSuperior);
+						cout<< "  ";
+					break;
+
+					case 23:
+						gotoxy(col + margenIzquierdo,fila + margenSuperior);
 						cout<<" ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						Color(0,4);
@@ -1042,6 +1239,7 @@
 								case 24:
 									gotoxy(margenIzquierdo + 21 + Buscai, margenInferior + 6);
 									cout<< " ";
+									ctrlx = true;
 									AsciiB = 0;
 								break;
 
@@ -1063,12 +1261,64 @@
 						}
 						while(AsciiB != 0);
 						Buscai = 0;
+						gotoxy(6, 6);
+						Busqueda = trimmed(Busqueda);
+						SepararBuscar(Busqueda);
+						PalabraBuscar = trimmed(PalabraBuscar);
+						PalabraReemplazar = trimmed(PalabraReemplazar);
+						if(PalabraBuscar.length() > 0)
+						{
+							PalabrasAF = BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
+						}
+						Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+						Coor = trimmed(Coor);
+						Separarcoor(Coor);
+						CoorCol = trimmed(CoorCol);
+						CoorFil = trimmed(CoorFil);
+						col = stoi(CoorCol) + 1;
+						fila = stoi(CoorFil);
+						Coor = "";
+						CoorCol = "";
+						CoorFil = "";
 						Busqueda = "";
+						gotoxy(margenIzquierdo + 1, margenInferior + 6);
+						cout<<"                                                                         ";
+						gotoxy(margenIzquierdo + 1, margenInferior + 6);
+						Color(0,10);
+						if(PalabrasAF > 0)
+						{
+							if(PalabrasAF == 1)
+							{
+								cout<< PalabrasAF << " Palabra Afectada";
+								getch();
+								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+								MostrarPL(PilaL);
+							}
+							else
+							{
+								cout<< PalabrasAF << " Palabras Afectadas";
+								getch();
+								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
+								MostrarPL(PilaL);
+							}
+						}
+						else
+						{
+							if(ctrlx == false)
+							{
+								Color(0, 4);
+								cout<< "No Se Encontro La Palabra Indicada";
+							}
+						}
+						PalabraBuscar = "";
+						PalabraReemplazar = "";
+						ctrlx = false;
+						PalabrasAF = 0;
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 					break;
 
-                    case 3:
+					case 3:
 						gotoxy(col + margenIzquierdo,fila + margenSuperior);
 						cout<<" ";
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
@@ -1117,12 +1367,12 @@
 						Reportei = 0;
 						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                                                    ";
-                        Reporte = trimmed(Reporte);
+						Reporte = trimmed(Reporte);
 						if(Reporte == "1")
 						{
 							ReporteListaLDC(CabezaC, ColaC);
 						}
-                        Reporte = "";
+						Reporte = "";
 					break;
 
 					case 19:
@@ -1133,7 +1383,7 @@
 						cout<<"Guardar: [Ruta Archivo]";
 						Color(0,15);
 						gotoxy(margenIzquierdo + 25, margenInferior + 6);
-                        do
+						do
 						{
 							gotoxy(margenIzquierdo + 25 + Guardari, margenInferior + 6);
 
@@ -1173,7 +1423,7 @@
 						}
 						while(AsciiG != 0);
 						Guardari = 0;
-                        gotoxy(margenIzquierdo + 1, margenInferior + 6);
+						gotoxy(margenIzquierdo + 1, margenInferior + 6);
 						cout<<"                                                                         ";
 						gotoxy(5, 5);
 						EscribirArchivo(RutaArchivo, CabezaC, ColaC, col, fila, margenIzquierdo, margenInferior, margenSuperior);

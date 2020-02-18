@@ -3,25 +3,31 @@
 	<Transactions>
     <Transaction>2020/02/04 15:31:51.000.591,=C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2020/02/04 15:31:56.000.050,=C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\File1.cpp</Transaction>
-    <Transaction>2020/02/04 15:33:49.000.157,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\P1.cpp=C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\File1.cpp</Transaction>
-    <Transaction>2020/02/04 15:34:00.000.485,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Project1PCH1.h=C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2020/02/04 15:34:12.000.259,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\P1PPCH1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Project1PCH1.h</Transaction>
-    <Transaction>2020/02/04 15:34:12.000.298,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\P1P.cbproj=C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2020/02/04 15:33:49.000.157,C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\File1.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\P1.cpp</Transaction>
+    <Transaction>2020/02/04 15:34:00.000.485,C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Project1PCH1.h</Transaction>
+    <Transaction>2020/02/04 15:34:12.000.259,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Project1PCH1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\P1PPCH1.h</Transaction>
+    <Transaction>2020/02/04 15:34:12.000.298,C:\Users\Sergio EG\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\P1P.cbproj</Transaction>
     <Transaction>2020/02/07 18:25:31.000.080,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\File1.h</Transaction>
-    <Transaction>2020/02/07 18:25:59.000.912,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\File1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDobleCaracteres.h</Transaction>
+    <Transaction>2020/02/07 18:25:59.000.912,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDobleCaracteres.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\File1.h</Transaction>
     <Transaction>2020/02/07 20:22:00.000.329,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDobleCaracteres.h=</Transaction>
     <Transaction>2020/02/07 20:22:17.000.210,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
-    <Transaction>2020/02/07 20:23:12.000.953,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDobleCaracteres.cpp</Transaction>
-    <Transaction>2020/02/07 20:23:12.000.953,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDobleCaracteres.h</Transaction>
+    <Transaction>2020/02/07 20:23:12.000.953,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDobleCaracteres.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
+    <Transaction>2020/02/07 20:23:12.000.953,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDobleCaracteres.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h</Transaction>
     <Transaction>2020/02/12 16:08:54.000.586,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
-    <Transaction>2020/02/12 16:09:25.000.240,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDoblePalabras.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
-    <Transaction>2020/02/12 16:09:25.000.240,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDoblePalabras.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h</Transaction>
+    <Transaction>2020/02/12 16:09:25.000.240,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDoblePalabras.h</Transaction>
+    <Transaction>2020/02/12 16:09:25.000.240,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaDoblePalabras.cpp</Transaction>
     <Transaction>2020/02/15 08:06:22.000.084,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
-    <Transaction>2020/02/15 08:06:46.000.383,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaCircularArchivosR.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h</Transaction>
-    <Transaction>2020/02/15 08:06:46.000.383,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaCircularArchivosR.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
-    <Transaction>2020/02/17 18:37:05.728,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
-    <Transaction>2020/02/17 18:38:54.796,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
-    <Transaction>2020/02/17 18:38:54.796,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h</Transaction>
-    <Transaction>2020/02/17 19:33:16.401,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.cpp=</Transaction>
+    <Transaction>2020/02/15 08:06:46.000.383,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaCircularArchivosR.h</Transaction>
+    <Transaction>2020/02/15 08:06:46.000.383,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\ListaCircularArchivosR.cpp</Transaction>
+    <Transaction>2020/02/17 18:37:05.000.728,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
+    <Transaction>2020/02/17 18:38:54.000.796,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.h</Transaction>
+    <Transaction>2020/02/17 18:38:54.000.796,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.cpp</Transaction>
+    <Transaction>2020/02/17 19:33:16.000.401,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.cpp=</Transaction>
+    <Transaction>2020/02/17 20:26:08.000.614,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
+    <Transaction>2020/02/17 20:26:32.000.534,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.h</Transaction>
+    <Transaction>2020/02/17 20:26:32.000.534,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaLog.cpp</Transaction>
+    <Transaction>2020/02/17 21:27:15.458,=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
+    <Transaction>2020/02/17 21:27:26.030,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaRevertidos.h=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.h</Transaction>
+    <Transaction>2020/02/17 21:27:26.030,C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\PilaRevertidos.cpp=C:\Usac\Estructuras De Datos\EDD_1S2020_P1_201801628\Unit1.cpp</Transaction>
   </Transactions>
 </BorlandProject>
