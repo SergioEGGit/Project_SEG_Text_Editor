@@ -2,28 +2,11 @@ digraph G
 {
 node [shape = box, fontname = Arial, color = blue];
 A0 [label = " "]
-A1 [label = " "]
-A2 [label = "i"]
-A3 [label = "h"]
-A4 [label = "s"]
-A5 [label = "o"]
-A6 [label = "Y"]
-A7 [label = " "]
-A8 [label = "i"]
-A9 [label = "k"]
-A10 [label = "a"]
-A11 [label = "M"]
-A12 [label = " "]
-A13 [label = "i"]
-A14 [label = "l"]
-A15 [label = "E"]
-A16 [label = " "]
-A17 [label = "i"]
-A18 [label = "h"]
-A19 [label = "s"]
-A20 [label = "o"]
-A21 [label = "Y"]
-A0->A1->A2->A3->A4->A5->A6->A7->A8->A9->A10->A11->A12->A13->A14->A15->A16->A17->A18->A19->A20->A21
+A1 [label = "a"]
+A2 [label = "l"]
+A3 [label = "o"]
+A4 [label = "H"]
+A0->A1->A2->A3->A4
  
-A21->A20->A19->A18->A17->A16->A15->A14->A13->A12->A11->A10->A9->A8->A7->A6->A5->A4->A3->A2->A1->A0->null
+A4->A3->A2->A1->A0->null
 }

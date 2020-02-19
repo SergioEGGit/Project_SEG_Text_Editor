@@ -63,6 +63,21 @@
 
 	}
 
+	int TLDC(ListaLDC &Cabeza)
+	{
+		ListaLDC aux = new(struct CaracteresLD);
+		int contador = 0;
+		aux = Cabeza;
+
+		while(aux != NULL)
+		{
+			aux = aux -> sgte;
+			contador++;
+		}
+
+		return contador;
+	}
+
 	void BorrarPrimeroLDC(ListaLDC &Cabeza)
 	{
 		ListaLDC aux = new(struct CaracteresLD);
@@ -71,6 +86,31 @@
 		Cabeza = Cabeza -> sgte;
 		aux -> ante = NULL;
 		Cabeza -> ante = NULL;
+	}
+
+	void BorrarEnmedioLDC(ListaLDC &Cabeza, int Posicion)
+	{
+		ListaLDC aux = new(struct CaracteresLD);
+		aux = Cabeza;
+		int contador = 0;
+		int NUM = TLDC(Cabeza);
+
+		if(aux != NULL)
+		{
+			aux = Cabeza;
+			for(int i = 1; i <= Posicion; i++)
+			{
+				aux = aux -> sgte;
+				ListaLDC Temp = aux -> sgte;
+				Temp = Temp -> sgte;
+				aux -> sgte = Temp;
+				if(Temp != NULL)
+				{
+					Temp -> ante = aux;
+				}
+			}
+		}
+
 	}
 
 	void BorrarUltimoLDC(ListaLDC &Cola)

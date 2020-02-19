@@ -97,48 +97,51 @@
 		string Posicion;
 		string Asc = "";
 
-		do
+		if(aux != NULL)
 		{
-			if(aux -> Estado == false)
+			do
 			{
-				Estado = "No Revertido";
-			}
-			else
-			{
-				Estado = "Revertido";
-			}
+				if(aux -> Estado == false)
+				{
+					Estado = "No Revertido";
+				}
+				else
+				{
+					Estado = "Revertido";
+				}
 
-			if(aux -> Posicion == -1)
-			{
-				Posicion = "Null";
-			}
-			else
-			{
-				Posicion = aux -> Posicion;
-            }
+				if(aux -> Posicion == -1)
+				{
+					Posicion = "Null";
+				}
+				else
+				{
+					Posicion = aux -> Posicion;
+				}
 
-			Reporte21<< "A" << contador << " [label = " <<"\"" << "Palabra Buscar: " << aux -> PalabraBuscar << "\\l" << "Palabra Reemplazar: " << aux -> PalabraReemplazar << "\\l" << "Estado: " << Estado << "\\l"  << "Palabra: " << aux -> Palabra << "\\l"  << "Posicion: " << Posicion << "\\l" <<"\"]" <<endl;
-			temp[contador] = "A" + to_string(contador);
-			contador++;
-			aux = aux -> sgte;
+				Reporte21<< "A" << contador << " [label = " <<"\"" << "Palabra Buscar: " << aux -> PalabraBuscar << "\\l" << "Palabra Reemplazar: " << aux -> PalabraReemplazar << "\\l" << "Estado: " << Estado << "\\l"  << "Palabra: " << aux -> Palabra << "\\l"  << "Posicion: " << Posicion << "\\l" <<"\"]" <<endl;
+				temp[contador] = "A" + to_string(contador);
+				contador++;
+				aux = aux -> sgte;
+			}
+			while(aux != NULL);
+
+
+			for(int i = 0; i < contador; i++)
+			{
+				Same = Same + temp[i] + " ";
+				if(i < contador - 1)
+				{
+					Asc = Asc + temp[i] + "->";
+				}
+				else
+			   {
+				   Asc = Asc + temp[i];
+			   }
+			}
+			Reporte21<< "{ rank = same " << Same << "}" << endl;
+			Reporte21<< Asc <<endl;
 		}
-		while(aux != NULL);
-
-		for(int i = 0; i < contador; i++)
-		{
-			Same = Same + temp[i] + " ";
-			if(i < contador - 1)
-			{
-				Asc = Asc + temp[i] + "->";
-			}
-			else
-			{
-				Asc = Asc + temp[i];
-			}
-		}
-
-		Reporte21<< "{ rank = same " << Same << "}" << endl;
-		Reporte21<< Asc <<endl;
 		Reporte21<< " " <<endl;
 		Reporte21<< "}";
 		Reporte21.close();

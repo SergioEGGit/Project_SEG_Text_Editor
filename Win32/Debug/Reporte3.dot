@@ -1,0 +1,9 @@
+digraph G
+{
+node [shape = box, fontname = Arial, color = brown];
+A0 [label = "HEY\lRemplazada Por: Hola\l"]
+A1 [label = "JAJAJA\lRemplazada Por: JEJEJE\l"]
+{ rank = same A0 A1 }
+A0->A1
+ 
+}

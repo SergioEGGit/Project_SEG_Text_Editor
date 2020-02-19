@@ -1,0 +1,25 @@
+//------------------------------------------------------------------------------
+
+	#ifndef ListaSimpleOrdenH
+	#define ListaSimpleOrdenH
+	#include <iostream>
+	#include <string>
+	#include <cstdlib>
+	using namespace std;
+
+//-------------------------------Estructura-------------------------------------
+
+	struct OrdenLS
+	{
+		string PalabraBuscar;
+		string PalabraReemplazar;
+		struct OrdenLS *sgte;
+	};
+
+	typedef struct OrdenLS *ListaLSO;
+
+	void InsertarFinalLS(ListaLSO &listaLSO, string PalabraBuscar, string PalabraReemplazar);
+
+//------------------------------------------------------------------------------
+
+	#endif

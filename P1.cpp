@@ -25,10 +25,10 @@
 	#include <locale>
 	#include <cstring>
 	#include <ListaDobleCaracteres.h>
-	#include <ListaDoblePalabras.h>
 	#include <ListaCircularArchivosR.h>
 	#include <PilaLog.h>
 	#include <PilaRevertidos.h>
+	#include <ListaSimpleOrden.h>
 	using namespace std;
 
 //---------------------------------Variables------------------------------------
@@ -62,26 +62,23 @@
 
 	//-----------------------------Trimmed---------------------------------
 
-		static inline void ltrim(string &s)
+		const string WHITESPACE = " \n\r\t\f\v";
+
+		string ltrim(const string& s)
 		{
-			s.erase(s.begin(), find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
+			size_t start = s.find_first_not_of(WHITESPACE);
+			return (start == string::npos) ? "" : s.substr(start);
 		}
 
-		static inline void rtrim(string &s)
+		string rtrim(const string& s)
 		{
-			s.erase(find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(), s.end());
+			size_t end = s.find_last_not_of(WHITESPACE);
+			return (end == string::npos) ? "" : s.substr(0, end + 1);
 		}
 
-		static inline void trim(string &s)
+		string trimmed(const string& s)
 		{
-			ltrim(s);
-			rtrim(s);
-		}
-
-		static inline string trimmed(string s)
-		{
-			trim(s);
-			return s;
+			return rtrim(ltrim(s));
 		}
 
 	//--------------------------------Split--------------------------------
@@ -164,6 +161,17 @@
                     contador++;
 				}
 			}
+		}
+
+	//-----------------------------Posiciones------------------------------
+
+		int PantallaTDA(int Col, int Fila, int MargenDerecho)
+		{
+			int Res = 0;
+
+			Res = (Fila - 1)*MargenDerecho + Col;
+
+			return Res;
 		}
 
 	//-------------------------------Menú----------------------------------
@@ -556,19 +564,22 @@
 			int Buscai;
 			int Guardari;
 			int PalabrasAF;
+			int Posicion;
 			bool ctrlx = false;
 
 
 			ListaLDC CabezaC = NULL;
 			ListaLDC ColaC = NULL;
-			ListaLDP CabezaP = NULL;
-			ListaLDP ColaP = NULL;
 
 			PilaPL PilaL = NULL;
 			PilaPR PilaR = NULL;
 
+            ListaLSO listaLSO = NULL;
+			Color(0, 15);
 			do
 			{
+                Color(0, 15);
+
 				//Fijar Coordenada
 				Coordenada(col, fila);
 				//Fijar Posición
@@ -593,11 +604,6 @@
 					Ascii = getch(); // Las compuestas
 					Ascii = Ascii * 100;
 				}
-
-				gotoxy(margenDerecho/2, margenInferior/2);
-				cout<<"                   ";
-				gotoxy(margenDerecho/2, margenInferior/2);
-				cout<< Ascii;
 
 				switch(Ascii)
 				{
@@ -641,6 +647,9 @@
 						col--;
 						gotoxy(col + margenIzquierdo,fila + margenSuperior);
 						cout<<" ";
+						PilaL = NULL;
+						PilaR = NULL;
+						Posicion = PantallaTDA(col, fila, margenDerecho);
 						if(col <= 1)
 						{
 							col = 1;
@@ -766,7 +775,7 @@
 						SepararBuscar(Busqueda);
 						PalabraBuscar = trimmed(PalabraBuscar);
 						PalabraReemplazar = trimmed(PalabraReemplazar);
-						if(PalabraBuscar.length() > 0)
+                        if((PalabraBuscar.length() > 0) && (PalabraReemplazar.length() > 0))
 						{
 							PalabrasAF = BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
 						}
@@ -792,14 +801,12 @@
 								cout<< PalabrasAF << " Palabra Afectada";
 								getch();
 								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
-								MostrarPL(PilaL);
 							}
 							else
 							{
 								cout<< PalabrasAF << " Palabras Afectadas";
 								getch();
 								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
-								MostrarPL(PilaL);
 							}
 						}
 						else
@@ -876,6 +883,10 @@
 						{
 							ReporteBuscadosPL(PilaL);
                             ReporteBuscadosPR(PilaR);
+						}
+						if(Reporte == "3")
+						{
+							ReporteOrdenLS(listaLSO, PilaL);
                         }
 						Reporte = "";
 					break;
@@ -1020,11 +1031,10 @@
 
 			ListaLDC CabezaC = NULL;
 			ListaLDC ColaC = NULL;
-			ListaLDP CabezaP = NULL;
-			ListaLDP ColaP = NULL;
-
 			PilaPL PilaL = NULL;
 			PilaPR PilaR = NULL;
+
+            ListaLSO listaLSO = NULL;
 
 			//Abrir Archivo
 			if(Archivo == "")
@@ -1069,6 +1079,8 @@
                 RutaArchivo = "";
 				do
 				{
+					Color(0, 15);
+
 					//Fijar Coordenada
 					Coordenada(col, fila);
 					//Fijar Posición
@@ -1093,11 +1105,6 @@
 						Ascii = getch(); // Las compuestas
 						Ascii = Ascii * 100;
 					}
-
-					gotoxy(margenDerecho/2, margenInferior/2);
-					cout<<"                   ";
-					gotoxy(margenDerecho/2, margenInferior/2);
-					cout<< Ascii;
 
 					switch(Ascii)
 					{
@@ -1190,7 +1197,7 @@
 							BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
 							InsertarPR(PilaR, PalabraReemplazar, PalabraBuscar, true, "Null", -1);
 						}
-						Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
+                        Coor = MostrarLDC(CabezaC, margenIzquierdo + 1, margenSuperior, margenInferior, margenDerecho);
 						Coor = trimmed(Coor);
 						Separarcoor(Coor);
 						CoorCol = trimmed(CoorCol);
@@ -1266,7 +1273,7 @@
 						SepararBuscar(Busqueda);
 						PalabraBuscar = trimmed(PalabraBuscar);
 						PalabraReemplazar = trimmed(PalabraReemplazar);
-						if(PalabraBuscar.length() > 0)
+                        if((PalabraBuscar.length() > 0) && (PalabraReemplazar.length() > 0))
 						{
 							PalabrasAF = BuscarRLCD(CabezaC, ColaC, PalabraBuscar, PalabraReemplazar);
 						}
@@ -1292,14 +1299,12 @@
 								cout<< PalabrasAF << " Palabra Afectada";
 								getch();
 								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
-								MostrarPL(PilaL);
 							}
 							else
 							{
 								cout<< PalabrasAF << " Palabras Afectadas";
 								getch();
 								InsertarPL(PilaL, PalabraBuscar, PalabraReemplazar, false, "Null", -1);
-								MostrarPL(PilaL);
 							}
 						}
 						else
@@ -1372,6 +1377,15 @@
 						{
 							ReporteListaLDC(CabezaC, ColaC);
 						}
+						if(Reporte == "2")
+						{
+							ReporteBuscadosPL(PilaL);
+                            ReporteBuscadosPR(PilaR);
+						}
+						if(Reporte == "3")
+						{
+							ReporteOrdenLS(listaLSO, PilaL);
+                        }
 						Reporte = "";
 					break;
 

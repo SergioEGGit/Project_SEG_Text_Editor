@@ -1,0 +1,30 @@
+//------------------------------------------------------------------------------
+
+	#ifndef ListaSimpleOrdenH
+	#define ListaSimpleOrdenH
+	#include <iostream>
+	#include <string>
+	#include <cstdlib>
+    #include <PilaLog.h>
+	using namespace std;
+
+//-------------------------------Estructura-------------------------------------
+
+	struct OrdenLS
+	{
+		string PalabraBuscar;
+		string PalabraReemplazar;
+		struct OrdenLS *sgte;
+	};
+
+	typedef struct OrdenLS ListaLSO;
+
+    void InsertarFinalLS(ListaLSO &listaLSO, string PalabraBuscar, string PalabraReemplazar);
+
+	void PilaTa(PilaPL &Pila);
+
+	void ReporteOrdenLS(ListaLSO &listaLSO, PilaPL &Pila);
+
+//------------------------------------------------------------------------------
+
+	#endif

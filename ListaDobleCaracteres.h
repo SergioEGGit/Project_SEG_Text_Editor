@@ -22,7 +22,11 @@
 
 	void InsertarFinalLDC(ListaLDC &Cabeza, ListaLDC &Cola, string Caracter);
 
+    int TLDC(ListaLDC &Cabeza);
+
 	void BorrarPrimeroLDC(ListaLDC &Cabeza);
+
+    void BorrarEnmedioLDC(ListaLDC &Cabeza, int Posicion);
 
 	void BorrarUltimoLDC(ListaLDC &Cola);
 

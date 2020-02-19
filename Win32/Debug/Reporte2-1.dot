@@ -2,3 +2,9 @@ digraph G
 {
 Revertidos [shape = cds, fontname = Arial, fontcolor = black, style=filled, fillcolor = red]
 node [shape = box, fontname = Arial, fontcolor = black, color = red];
+A0 [label = "Palabra Buscar: HEY\lPalabra Reemplazar: Hola\lEstado: Revertido\lPalabra: Null\lPosicion: Null\l"]
+A1 [label = "Palabra Buscar: JAJAJA\lPalabra Reemplazar: JEJEJE\lEstado: Revertido\lPalabra: Null\lPosicion: Null\l"]
+{ rank = same A0 A1 }
+A0->A1
+ 
+}

@@ -1,0 +1,124 @@
+//---------------------------------------------------------------------------
+
+	#pragma hdrstop
+
+//---------------------------------Librerias---------------------------------
+
+	#include <iostream>
+	#include <stdio.h>
+	#include <conio.h>
+	#include <string>
+	#include <windows.h>
+	#include <fstream>
+    #include <algorithm>
+	#include <functional>
+	#include <cctype>
+	#include <locale>
+	#include <cstring>
+	#include "ListaSimpleOrden.h"
+	using namespace std;
+
+//---------------------------------------------------------------------------
+
+	#pragma package(smart_init)
+
+//---------------------------------Métodos-----------------------------------
+
+	void gotoxy(int x, int y)
+	{
+		COORD coord;
+		coord.X = x;
+		coord.Y = y;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	}
+
+	void InsertarFinalLS(ListaLSO &listaLSO, string PalabraBuscar, string PalabraReemplazar)
+	{
+		ListaLSO auxt, auxq = new(struct OrdenLS);
+
+		auxq -> PalabraBuscar  = PalabraBuscar;
+		auxq -> PalabraReemplazar = PalabraReemplazar;
+		auxq -> sgte = NULL;
+
+		if(listaLSO == NULL)
+		{
+			listaLSO = auxq;
+		}
+		else
+		{
+			auxt = listaLSO;
+			while(auxt -> sgte != NULL)
+			{
+				auxt = auxt -> sgte;
+			}
+			auxt -> sgte = auxq;
+		}
+	}
+
+	int PilaTa(PilaPL &Pila)
+	{
+		int contador = 0;
+		PilaPL aux = Pila;
+
+		if(aux != NULL)
+		{
+			while(aux != NULL)
+			{
+				contador++;
+				aux = aux -> sgte;
+			}
+		}
+
+        return contador;
+	}
+
+	void ReporteOrdenLS(ListaLSO &listaLSO, PilaPL &Pila)
+	{
+		int i, j , n;
+		int T = 0;
+		PilaPL aux = Pila;
+
+		int NUM = PilaTa(Pila);
+
+		ListaLSO Orden[NUM];
+		ListaLSO Temp;
+
+		//Rellenar Estructura Temporal
+		for(i = 0; i < NUM; i++)
+		{
+			Orden[i] -> PalabraBuscar = aux -> PalabraBuscar;
+			Orden[i] -> PalabraReemplazar = aux -> PalabraReemplazar;
+			aux = aux -> sgte;
+		}
+
+		//Ordenar Arreglo Por Palabra Buscar
+		for(i = 0; i < NUM; i++)
+		{
+			for(j = 0; j < NUM - 1; j++)
+			{
+				if((Orden[j] -> PalabraBuscar) > (Orden[i] -> PalabraBuscar))
+				{
+					Temp = Orden[i];
+					Orden[i] = Orden[j];
+					Orden[j] = Temp;
+				}
+			}
+		}
+
+
+        for ( i = 0; i < NUM; i++ )
+		{
+			 cout << "Orde.PalabraBuscar[" << i << "]=\"" << Orden[i].PalabraBuscar << "\";" << "Orde.PalabraReemplazar[" << i << "]=\"" << Orden[i].PalabraReemplazar << "\";" << endl;
+		}
+
+
+
+		/*for ( i = 0; i < NUM; i++ )
+		{
+			 cout << "Orde.PalabraBuscar[" << i << "]=\"" << Orden[i].PalabraBuscar << "\";" << "Orde.PalabraReemplazar[" << i << "]=\"" << Orden[i].PalabraReemplazar << "\";" << endl;
+		} */
+
+
+
+	}
+

@@ -97,48 +97,51 @@
 		string Posicion;
 		string Asc = "";
 
-		do
+		if(aux != NULL)
 		{
-			if(aux -> Estado == false)
+			do
 			{
-				Estado = "No Revertido";
-			}
-			else
-			{
-				Estado = "Revertido";
-			}
+				if(aux -> Estado == false)
+				{
+					Estado = "No Revertido";
+				}
+				else
+				{
+					Estado = "Revertido";
+				}
 
-			if(aux -> Posicion == -1)
-			{
-				Posicion = "Null";
-			}
-			else
-			{
-				Posicion = aux -> Posicion;
-            }
+				if(aux -> Posicion == -1)
+				{
+					Posicion = "Null";
+				}
+				else
+				{
+					Posicion = aux -> Posicion;
+				}
 
-			Reporte2<< "A" << contador << " [label = " <<"\"" << "Palabra Buscar: " << aux -> PalabraBuscar << "\\l" << "Palabra Reemplazar: " << aux -> PalabraReemplazar << "\\l" << "Estado: " << Estado << "\\l"  << "Palabra: " << aux -> Palabra << "\\l"  << "Posicion: " << Posicion << "\\l" <<"\"]" <<endl;
-			temp[contador] = "A" + to_string(contador);
-			contador++;
-			aux = aux -> sgte;
+				Reporte2<< "A" << contador << " [label = " <<"\"" << "Palabra Buscar: " << aux -> PalabraBuscar << "\\l" << "Palabra Reemplazar: " << aux -> PalabraReemplazar << "\\l" << "Estado: " << Estado << "\\l"  << "Palabra: " << aux -> Palabra << "\\l"  << "Posicion: " << Posicion << "\\l" <<"\"]" <<endl;
+				temp[contador] = "A" + to_string(contador);
+				contador++;
+				aux = aux -> sgte;
+			}
+			while(aux != NULL);
+
+
+			for(int i = 0; i < contador; i++)
+			{
+				Same = Same + temp[i] + " ";
+				if(i < contador - 1)
+				{
+					Asc = Asc + temp[i] + "->";
+				}
+				else
+			   {
+				   Asc = Asc + temp[i];
+			   }
+			}
+			Reporte2<< "{ rank = same " << Same << "}" << endl;
+			Reporte2<< Asc <<endl;
 		}
-		while(aux != NULL);
-
-		for(int i = 0; i < contador; i++)
-		{
-			Same = Same + temp[i] + " ";
-			if(i < contador - 1)
-			{
-				Asc = Asc + temp[i] + "->";
-			}
-			else
-			{
-				Asc = Asc + temp[i];
-			}
-		}
-
-		Reporte2<< "{ rank = same " << Same << "}" << endl;
-		Reporte2<< Asc <<endl;
 		Reporte2<< " " <<endl;
 		Reporte2<< "}";
 		Reporte2.close();

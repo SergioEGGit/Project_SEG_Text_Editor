@@ -115,9 +115,9 @@
             <DependentOn>ListaDobleCaracteres.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ListaDoblePalabras.cpp">
-            <DependentOn>ListaDoblePalabras.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
+        <CppCompile Include="ListaSimpleOrden.cpp">
+            <DependentOn>ListaSimpleOrden.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
         </CppCompile>
         <CppCompile Include="P1.cpp">
             <BuildOrder>1</BuildOrder>
